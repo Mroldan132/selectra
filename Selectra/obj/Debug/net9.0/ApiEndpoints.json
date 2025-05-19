@@ -36,6 +36,59 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Selectra.Controllers.NotificacionesController",
+    "Method": "GetListNotificaciones",
+    "RelativePath": "api/Notificaciones/GetListNotificaciones/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NotificacionesController",
+    "Method": "LeerNotificiacion",
+    "RelativePath": "api/Notificaciones/LeerNotificiacion/{notificacionId}/{usuarioId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificacionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NotificacionesController",
+    "Method": "MarcarTodasLeidas",
+    "RelativePath": "api/Notificaciones/MarcarTodasLeidas/{usuarioId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Selectra.Controllers.PersonalesController",
     "Method": "GetListaJefesDirectos",
     "RelativePath": "api/Personales/elegiblesComoJefe",
@@ -47,20 +100,40 @@
   },
   {
     "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
-    "Method": "GetRequerimientoPorId",
-    "RelativePath": "api/RequerimientosPersonales/{id}",
-    "HttpMethod": "GET",
+    "Method": "ActualizarRequerimiento",
+    "RelativePath": "api/RequerimientosPersonales/actualizar/{idRequerimiento}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "idRequerimiento",
         "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.ActualizarRequerimientoDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [],
-    "EndpointName": "GetRequerimientoPorId"
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "AprobarRechazarRequerimientoPersonal",
+    "RelativePath": "api/RequerimientosPersonales/aprobarRechazar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.AprobarRechazarRequerimientoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
@@ -80,6 +153,32 @@
   },
   {
     "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetRequerimientoPorId",
+    "RelativePath": "api/RequerimientosPersonales/getRequerimientoPorId/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetListaEstadosRequerimiento",
+    "RelativePath": "api/RequerimientosPersonales/ListaEstadosRequerimientos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
     "Method": "GetListaTiposRequerimientos",
     "RelativePath": "api/RequerimientosPersonales/ListaTiposRequerimiento",
     "HttpMethod": "GET",
@@ -92,6 +191,16 @@
     "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
     "Method": "GetMisSolicitudes",
     "RelativePath": "api/RequerimientosPersonales/misSolicitudes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetMisSolicitudesRecientes",
+    "RelativePath": "api/RequerimientosPersonales/misSolicitudesRecientes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

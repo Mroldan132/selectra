@@ -6,6 +6,7 @@ namespace Selectra.Models
     public class Area
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int areaId { get; set; }
         [Required]
         [StringLength(100)]

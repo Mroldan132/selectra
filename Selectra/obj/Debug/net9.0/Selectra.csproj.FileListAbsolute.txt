@@ -327,3 +327,4 @@ C:\Users\user\source\repos\Selectra\Selectra\obj\Debug\net9.0\Selectra.pdb
 C:\Users\user\source\repos\Selectra\Selectra\obj\Debug\net9.0\Selectra.genruntimeconfig.cache
 C:\Users\user\source\repos\Selectra\Selectra\obj\Debug\net9.0\ref\Selectra.dll
 C:\Users\user\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\user\source\repos\Selectra\Selectra\obj\Debug\net9.0\Selectra.sourcelink.json

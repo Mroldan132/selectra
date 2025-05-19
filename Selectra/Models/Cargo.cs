@@ -6,6 +6,7 @@ namespace Selectra.Models
     public class Cargo
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int cargoId { get; set; }
         [Required]
         [StringLength(100)]

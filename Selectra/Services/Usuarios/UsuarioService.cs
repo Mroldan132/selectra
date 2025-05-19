@@ -65,21 +65,21 @@ namespace Selectra.Services.Usuarios
                     usuarioUltModId = usuarioQueRegistraId
                 };
                 _context.DatosPersonales.Add(datosPersonales);
-                await _context.SaveChangesAsync(); 
+                await _context.SaveChangesAsync();
 
-                //var personal = new Personal
-                //{
-                //    datosPersonalesId = datosPersonales.datosPersonalesId,  
-                //    usuarioId = usuario.usuarioId, 
-                //    emailCorporativo = registroDto.EmailCorporativo,
-                //    areaId = registroDto.AreaId,
-                //    cargoId = registroDto.CargoId,
-                //    jefeDirectoId = registroDto.JefeDirectoId,
-                //    fechaIngresoCompania = registroDto.FechaIngresoCompania ?? ahora.Date, 
-                //    activo = registroDto.Activo,
-                //};
-                //_context.Personales.Add(personal);
-                //await _context.SaveChangesAsync();
+                var personal = new Personal
+                {
+                    datosPersonalesId = datosPersonales.datosPersonalesId,
+                    usuarioId = usuario.usuarioId,
+                    emailCorporativo = registroDto.EmailCorporativo,
+                    areaId = registroDto.AreaId,
+                    cargoId = registroDto.CargoId,
+                    jefeDirectoId = registroDto.JefeDirectoId,
+                    fechaIngresoCompania = registroDto.FechaIngresoCompania ?? ahora.Date,
+                    activo = registroDto.Activo,
+                };
+                _context.Personales.Add(personal);
+                await _context.SaveChangesAsync();
 
                 await transaction.CommitAsync();
                 return usuario; 

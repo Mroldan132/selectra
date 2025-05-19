@@ -1,4 +1,6 @@
-﻿namespace Selectra.DTOs
+﻿using Selectra.Models;
+
+namespace Selectra.DTOs
 {
     public class MisRequerimientosListDto
     {
@@ -7,6 +9,8 @@
         public string TipoRequerimientoNombre { get; set; }
         public string CargoNombre { get; set; } 
         public DateTime FechaCreacion { get; set; }
-        public string EstadoNombre { get; set; } 
+        public string EstadoNombre { get; set; }
+        public List<HistorialAprobacionDto> HistorialDeAprobaciones { get; set; } = new List<HistorialAprobacionDto>();
+
     }
 }

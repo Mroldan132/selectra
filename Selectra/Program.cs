@@ -6,6 +6,7 @@ using Selectra.Models;
 using Selectra.Services;
 using Selectra.Services.Areas;
 using Selectra.Services.Cargos;
+using Selectra.Services.Notificaciones;
 using Selectra.Services.Personales;
 using Selectra.Services.Requerimiento;
 using Selectra.Services.Usuarios;
@@ -22,6 +23,7 @@ builder.Services.AddScoped<IRequerimientoPersonalService, RequerimientoPersonalS
 builder.Services.AddScoped<IAreaService, AreaService>();
 builder.Services.AddScoped<ICargosService,CargosServices>();
 builder.Services.AddScoped<IPersonalesServices, PersonalesServices>();
+builder.Services.AddScoped<INotificacionesServices, NotificacionesServices>();
 
 //Conexion a la base de datos
 builder.Services.AddDbContext<SelectraContext>(options =>

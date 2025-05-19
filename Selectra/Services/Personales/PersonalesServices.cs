@@ -17,7 +17,7 @@ namespace Selectra.Services.Personales
             .Select(p => new ListaJefesPersonalDto
             {
                 PersonalId = p.personalId,
-                NombrePersonal = p.DatosPersonales.nombres,
+                NombrePersonal =$"{p.DatosPersonales.apellidoPaterno} {p.DatosPersonales.apellidoMaterno} {p.DatosPersonales.nombres}",
                 NombreCargo = p.Cargo.nombreCargo
             })
             .ToListAsync();

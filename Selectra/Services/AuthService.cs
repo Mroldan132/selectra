@@ -51,7 +51,7 @@ namespace Selectra.Services
                     new Claim(ClaimTypes.Role, usuario.Rol?.nombreRol ?? string.Empty) 
                                                                                        
                 }),
-                Expires = DateTime.UtcNow.AddHours(8), 
+                Expires = DateTime.UtcNow.AddMinutes(1), 
                 Issuer = issuer,
                 Audience = audience,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -64,6 +64,7 @@ namespace Selectra.Services
                 Token = tokenString,
                 Expiration = tokenDescriptor.Expires.Value,
                 Usuario = usuario.codUsuario,
+                usuarioId = usuario.usuarioId,
                 Rol = usuario.Rol?.nombreRol ?? "Sin Rol Asignado"
             };
         }

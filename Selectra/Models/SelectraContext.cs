@@ -28,6 +28,7 @@ namespace Selectra.Models
         public DbSet<EstadoOfertaLaboral> EstadosOfertaLaborales { get; set; }
         public DbSet<Rol> Roles { get; set; }
         public DbSet<EstadoRequerimiento> EstadosRequerimientos { get; set; }
+        public DbSet<NotificacionesUsuarios> NotificacionesUsuarios { get; set; }
 
 
 

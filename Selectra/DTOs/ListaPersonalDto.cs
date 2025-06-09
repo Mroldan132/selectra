@@ -2,6 +2,7 @@
 {
     public class ListaPersonalDto
     {
+            public int personalId         { get; set; }
             public string codUsuario      {get;set;}
             public string nombres         {get;set;}
             public string apellidoPaterno {get;set;}

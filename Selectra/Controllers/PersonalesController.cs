@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Selectra.DTOs;
 using Selectra.Services.Personales;
 
 namespace Selectra.Controllers
@@ -33,5 +34,21 @@ namespace Selectra.Controllers
             return Ok(listaPersonal);
 
         }
+
+        [HttpGet("detallePersonal/{personalId}")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> DetallePersonal(int personalId)
+        {
+            var personal = await _personalesServices.GetDetallePersonalAsync(personalId);
+
+            if(personal == null) {
+                return BadRequest("Error en traer los datos");
+            }
+
+            return Ok(personal);
+        }
+
+
+
     }
 }

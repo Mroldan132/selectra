@@ -347,7 +347,6 @@ namespace Selectra.Migrations
                     emailCorporativo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     fechaIngresoCompania = table.Column<DateTime>(type: "datetime2", nullable: true),
                     activo = table.Column<bool>(type: "bit", nullable: false),
-                    personalId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -370,11 +369,6 @@ namespace Selectra.Migrations
                         principalTable: "DatosPersonales",
                         principalColumn: "datosPersonalesId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Personales_Personales_personalId1",
-                        column: x => x.personalId1,
-                        principalTable: "Personales",
-                        principalColumn: "personalId");
                 });
 
             migrationBuilder.CreateTable(
@@ -871,11 +865,6 @@ namespace Selectra.Migrations
                 name: "IX_Personales_datosPersonalesId",
                 table: "Personales",
                 column: "datosPersonalesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Personales_personalId1",
-                table: "Personales",
-                column: "personalId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Postulantes_aspiranteId",

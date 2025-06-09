@@ -31,7 +31,6 @@ namespace Selectra.Models
 
         public bool activo { get; set; } = true; 
 
-        public virtual ICollection<Personal> Subordinados { get; set; } = new HashSet<Personal>();
         public virtual ICollection<RequerimientoPersonal> RequerimientosSolicitados { get; set; } = new HashSet<RequerimientoPersonal>();
         public virtual ICollection<HistorialAprobacion> AprobacionesRealizadas { get; set; } = new HashSet<HistorialAprobacion>();
         public virtual ICollection<OfertaLaboral> OfertasResponsable { get; set; } = new HashSet<OfertaLaboral>();

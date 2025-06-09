@@ -29,6 +29,7 @@ namespace Selectra.Services.Personales
                 .Include(p => p.Cargo)
                 .Include(p => p.Area)
                 .Select(p => new ListaPersonalDto { 
+                    personalId = p.personalId,
                     codUsuario = p.DatosPersonales.Usuario.codUsuario,
                     nombres = p.DatosPersonales.nombres,
                     apellidoPaterno = p.DatosPersonales.apellidoPaterno,
@@ -40,6 +41,42 @@ namespace Selectra.Services.Personales
                 })
                 .ToListAsync();
 
+        }
+
+        public async Task<DetallePersonalDto> GetDetallePersonalAsync(int personalId) {
+            var personal = await _context.Personales
+                .Include(p => p.DatosPersonales)
+                .Include(p => p.DatosPersonales.Usuario)
+                .Where(i => i.personalId == personalId)
+                .Select(i => new DetallePersonalDto
+                {
+                    personalId = personalId,
+                    codUsuario = i.DatosPersonales.Usuario.codUsuario,
+                    activo = i.activo,
+                    rolId = i.DatosPersonales.Usuario.rolId,
+                    nombres = i.DatosPersonales.nombres,
+                    apellidoPaterno = i.DatosPersonales.apellidoPaterno,
+                    apellidoMaterno = i.DatosPersonales.apellidoMaterno,
+                    tipoDocumentoId = i.DatosPersonales.tipoDocumentoId,
+                    numeroDocumento = i.DatosPersonales.numeroDocumento,
+                    fechaNacimiento = i.DatosPersonales.fechaNacimiento ?? DateTime.MinValue,
+                    ubigeoNacimiento = i.DatosPersonales.ubigeoNacimientoId,
+                    ubigeoResidencia = i.DatosPersonales.ubigeoResidenciaId,
+                    telefono = i.DatosPersonales.telefono,
+                    emailPersonal = i.DatosPersonales.emailPersonal,
+                    areaId = i.areaId,
+                    cargoId = i.cargoId,
+                    jefeDirectoId = i.jefeDirectoId ?? 0,
+                    emailCorporativo = i.emailCorporativo,
+                    fechaIngresoCompania = i.fechaIngresoCompania ?? DateTime.MinValue
+                })
+                .FirstOrDefaultAsync();
+            if(personal == null)
+            {
+                throw new Exception("No existe el personal.");
+            }
+
+            return personal;
         }
     }
 }

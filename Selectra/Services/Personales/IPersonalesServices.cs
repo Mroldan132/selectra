@@ -6,5 +6,6 @@ namespace Selectra.Services.Personales
     {
         public Task<IEnumerable<ListaJefesPersonalDto>> GetListaJefesDirectosAsync();
         public Task<IEnumerable<ListaPersonalDto>> GetListaPersonalessAsync();
+        public Task<DetallePersonalDto> GetDetallePersonalAsync(int personalId);
     }
 }

@@ -1,86 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\Selectra\\",
+  "WorkspaceRootPath": "C:\\Users\\HP\\source\\repos\\selectra\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\ofertaslaborales\\iofertaslaboralesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\ofertaslaborales\\iofertaslaboralesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\dtos\\detalleofertalaboraldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\dtos\\detalleofertalaboraldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\ofertaslaborales\\ofertaslaboralesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\hp\\source\\repos\\selectra\\selectra\\services\\ofertaslaborales\\ofertaslaboralesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\ofertaslaborales\\ofertaslaboralesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\controllers\\ofertaslaboralescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\controllers\\ofertaslaboralescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\hp\\source\\repos\\selectra\\selectra\\services\\ofertaslaborales\\iofertaslaboralesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\ofertaslaborales\\iofertaslaboralesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\requerimientos\\requerimientopersonalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\requerimientos\\requerimientopersonalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\requerimientos\\irequerimientopersonalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\requerimientos\\irequerimientopersonalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\usuarios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\usuarios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\dtos\\listarolesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\dtos\\listarolesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\personales\\ipersonalesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\personales\\ipersonalesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\usuarios\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\usuarios\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\controllers\\datospersonalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\controllers\\datospersonalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\controllers\\personalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\hp\\source\\repos\\selectra\\selectra\\controllers\\personalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\controllers\\personalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\controllers\\requerimientospersonalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\controllers\\requerimientospersonalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\personales\\personalesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\personales\\personalesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\datospersonales\\datospersonalesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\hp\\source\\repos\\selectra\\selectra\\services\\datospersonales\\datospersonalesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\datospersonales\\datospersonalesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\dtos\\registraradministradordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\dtos\\registraradministradordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\models\\aspirantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\models\\aspirantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|c:\\users\\user\\source\\repos\\selectra\\selectra\\services\\notificaciones\\notificacionesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B59501D0-3842-473A-9360-2B73892B4986}|Selectra\\Selectra.csproj|solutionrelative:selectra\\services\\notificaciones\\notificacionesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -89,7 +25,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 78,
+          "DockedWidth": 77,
           "SelectedChildIndex": 9,
           "Children": [
             {
@@ -118,274 +54,72 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DetalleOfertaLaboralDto.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\DTOs\\DetalleOfertaLaboralDto.cs",
-              "RelativeDocumentMoniker": "Selectra\\DTOs\\DetalleOfertaLaboralDto.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\DTOs\\DetalleOfertaLaboralDto.cs",
-              "RelativeToolTip": "Selectra\\DTOs\\DetalleOfertaLaboralDto.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAgwBAAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T03:34:16.591Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IOfertasLaboralesServices.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\OfertasLaborales\\IOfertasLaboralesServices.cs",
-              "RelativeDocumentMoniker": "Selectra\\Services\\OfertasLaborales\\IOfertasLaboralesServices.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\OfertasLaborales\\IOfertasLaboralesServices.cs",
-              "RelativeToolTip": "Selectra\\Services\\OfertasLaborales\\IOfertasLaboralesServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Title": "OfertasLaboralesServices.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Services\\OfertasLaborales\\OfertasLaboralesServices.cs",
+              "RelativeDocumentMoniker": "Selectra\\Services\\OfertasLaborales\\OfertasLaboralesServices.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Services\\OfertasLaborales\\OfertasLaboralesServices.cs",
+              "RelativeToolTip": "Selectra\\Services\\OfertasLaborales\\OfertasLaboralesServices.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAIAwwD4AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T03:33:46.953Z",
+              "WhenOpened": "2025-06-09T22:11:40.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IOfertasLaboralesServices.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Services\\OfertasLaborales\\IOfertasLaboralesServices.cs",
+              "RelativeDocumentMoniker": "Selectra\\Services\\OfertasLaborales\\IOfertasLaboralesServices.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Services\\OfertasLaborales\\IOfertasLaboralesServices.cs",
+              "RelativeToolTip": "Selectra\\Services\\OfertasLaborales\\IOfertasLaboralesServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T13:48:05.849Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "OfertasLaboralesServices.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\OfertasLaborales\\OfertasLaboralesServices.cs",
-              "RelativeDocumentMoniker": "Selectra\\Services\\OfertasLaborales\\OfertasLaboralesServices.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\OfertasLaborales\\OfertasLaboralesServices.cs",
-              "RelativeToolTip": "Selectra\\Services\\OfertasLaborales\\OfertasLaboralesServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABFAAAAAAAAAA==",
+              "Title": "PersonalesController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Controllers\\PersonalesController.cs",
+              "RelativeDocumentMoniker": "Selectra\\Controllers\\PersonalesController.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Controllers\\PersonalesController.cs",
+              "RelativeToolTip": "Selectra\\Controllers\\PersonalesController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACkAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T03:33:39.621Z",
+              "WhenOpened": "2025-06-09T20:39:54.447Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "OfertasLaboralesController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\OfertasLaboralesController.cs",
-              "RelativeDocumentMoniker": "Selectra\\Controllers\\OfertasLaboralesController.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\OfertasLaboralesController.cs",
-              "RelativeToolTip": "Selectra\\Controllers\\OfertasLaboralesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T23:00:30.22Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Program.cs",
-              "RelativeDocumentMoniker": "Selectra\\Program.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Program.cs",
-              "RelativeToolTip": "Selectra\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T23:00:07.776Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "PersonalesServices.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Personales\\PersonalesServices.cs",
-              "RelativeDocumentMoniker": "Selectra\\Services\\Personales\\PersonalesServices.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Personales\\PersonalesServices.cs",
-              "RelativeToolTip": "Selectra\\Services\\Personales\\PersonalesServices.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T16:37:37.909Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "IPersonalesServices.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Personales\\IPersonalesServices.cs",
-              "RelativeDocumentMoniker": "Selectra\\Services\\Personales\\IPersonalesServices.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Personales\\IPersonalesServices.cs",
-              "RelativeToolTip": "Selectra\\Services\\Personales\\IPersonalesServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T16:37:20.242Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "PersonalesController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\PersonalesController.cs",
-              "RelativeDocumentMoniker": "Selectra\\Controllers\\PersonalesController.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\PersonalesController.cs",
-              "RelativeToolTip": "Selectra\\Controllers\\PersonalesController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAUwB8AAABVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T16:23:10.963Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ListaRolesDto.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\DTOs\\ListaRolesDto.cs",
-              "RelativeDocumentMoniker": "Selectra\\DTOs\\ListaRolesDto.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\DTOs\\ListaRolesDto.cs",
-              "RelativeToolTip": "Selectra\\DTOs\\ListaRolesDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T15:57:59.077Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "Selectra\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "Selectra\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAgwCUAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T15:48:22.096Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Usuarios\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "Selectra\\Services\\Usuarios\\UsuarioService.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Usuarios\\UsuarioService.cs",
-              "RelativeToolTip": "Selectra\\Services\\Usuarios\\UsuarioService.cs",
-              "ViewState": "AgIAAMsAAAAAAAAAAAAIwOIAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T03:55:01.251Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IUsuarioService.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Usuarios\\IUsuarioService.cs",
-              "RelativeDocumentMoniker": "Selectra\\Services\\Usuarios\\IUsuarioService.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Usuarios\\IUsuarioService.cs",
-              "RelativeToolTip": "Selectra\\Services\\Usuarios\\IUsuarioService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T15:46:08.53Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "RegistrarAdministradorDto.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\DTOs\\RegistrarAdministradorDto.cs",
-              "RelativeDocumentMoniker": "Selectra\\DTOs\\RegistrarAdministradorDto.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\DTOs\\RegistrarAdministradorDto.cs",
-              "RelativeToolTip": "Selectra\\DTOs\\RegistrarAdministradorDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T15:44:31.858Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "DatosPersonalesController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\DatosPersonalesController.cs",
-              "RelativeDocumentMoniker": "Selectra\\Controllers\\DatosPersonalesController.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\DatosPersonalesController.cs",
-              "RelativeToolTip": "Selectra\\Controllers\\DatosPersonalesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T15:31:36.966Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
               "Title": "DatosPersonalesServices.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\DatosPersonales\\DatosPersonalesServices.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Services\\DatosPersonales\\DatosPersonalesServices.cs",
               "RelativeDocumentMoniker": "Selectra\\Services\\DatosPersonales\\DatosPersonalesServices.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\DatosPersonales\\DatosPersonalesServices.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Services\\DatosPersonales\\DatosPersonalesServices.cs",
               "RelativeToolTip": "Selectra\\Services\\DatosPersonales\\DatosPersonalesServices.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAwwCcAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowB4AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T15:28:03.689Z",
+              "WhenOpened": "2025-06-09T20:54:57.958Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IRequerimientoPersonalService.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Requerimientos\\IRequerimientoPersonalService.cs",
-              "RelativeDocumentMoniker": "Selectra\\Services\\Requerimientos\\IRequerimientoPersonalService.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Requerimientos\\IRequerimientoPersonalService.cs",
-              "RelativeToolTip": "Selectra\\Services\\Requerimientos\\IRequerimientoPersonalService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T04:16:18.864Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RequerimientoPersonalService.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Requerimientos\\RequerimientoPersonalService.cs",
-              "RelativeDocumentMoniker": "Selectra\\Services\\Requerimientos\\RequerimientoPersonalService.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Requerimientos\\RequerimientoPersonalService.cs",
-              "RelativeToolTip": "Selectra\\Services\\Requerimientos\\RequerimientoPersonalService.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAUwDsAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T04:16:16.047Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Aspirantes.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Models\\Aspirantes.cs",
-              "RelativeDocumentMoniker": "Selectra\\Models\\Aspirantes.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Models\\Aspirantes.cs",
-              "RelativeToolTip": "Selectra\\Models\\Aspirantes.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T03:57:13.599Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "RequerimientosPersonalesController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\RequerimientosPersonalesController.cs",
-              "RelativeDocumentMoniker": "Selectra\\Controllers\\RequerimientosPersonalesController.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Controllers\\RequerimientosPersonalesController.cs",
-              "RelativeToolTip": "Selectra\\Controllers\\RequerimientosPersonalesController.cs",
-              "ViewState": "AgIAANkAAAAAAAAAAAASwOIAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T03:52:37.534Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "NotificacionesServices.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Notificaciones\\NotificacionesServices.cs",
-              "RelativeDocumentMoniker": "Selectra\\Services\\Notificaciones\\NotificacionesServices.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\Selectra\\Selectra\\Services\\Notificaciones\\NotificacionesServices.cs",
-              "RelativeToolTip": "Selectra\\Services\\Notificaciones\\NotificacionesServices.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAMwH4AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T03:52:36.726Z"
             }
           ]
         },
         {
-          "DockedWidth": 31,
+          "DockedWidth": 77,
           "SelectedChildIndex": -1,
           "Children": [
             {

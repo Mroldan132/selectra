@@ -634,9 +634,6 @@ namespace Selectra.Migrations
                     b.Property<int?>("jefeDirectoId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("personalId1")
-                        .HasColumnType("int");
-
                     b.HasKey("personalId");
 
                     b.HasIndex("areaId");
@@ -644,8 +641,6 @@ namespace Selectra.Migrations
                     b.HasIndex("cargoId");
 
                     b.HasIndex("datosPersonalesId");
-
-                    b.HasIndex("personalId1");
 
                     b.ToTable("Personales");
                 });
@@ -1263,10 +1258,6 @@ namespace Selectra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Selectra.Models.Personal", null)
-                        .WithMany("Subordinados")
-                        .HasForeignKey("personalId1");
-
                     b.Navigation("Area");
 
                     b.Navigation("Cargo");
@@ -1463,7 +1454,6 @@ namespace Selectra.Migrations
 
                     b.Navigation("RequerimientosSolicitados");
 
-                    b.Navigation("Subordinados");
                 });
 
             modelBuilder.Entity("Selectra.Models.Postulante", b =>

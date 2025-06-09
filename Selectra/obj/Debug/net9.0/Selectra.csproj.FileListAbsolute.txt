@@ -149,12 +149,6 @@ C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\scopedcss\bundle\Sel
 C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets\msbuild.Selectra.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets\msbuild.Selectra.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets\msbuild.build.Selectra.props
-C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.Selectra.props
-C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.Selectra.props
-C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets.pack.json
 C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\Selectra.csproj.Up2Date
 C:\Users\HP\source\repos\Selectra\Selectra\obj\Debug\net9.0\Selectra.dll
@@ -328,3 +322,5 @@ C:\Users\user\source\repos\Selectra\Selectra\obj\Debug\net9.0\Selectra.genruntim
 C:\Users\user\source\repos\Selectra\Selectra\obj\Debug\net9.0\ref\Selectra.dll
 C:\Users\user\source\repos\Selectra\Selectra\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\user\source\repos\Selectra\Selectra\obj\Debug\net9.0\Selectra.sourcelink.json
+C:\Users\HP\source\repos\selectra\Selectra\obj\Debug\net9.0\Selectra.sourcelink.json
+C:\Users\HP\source\repos\selectra\Selectra\obj\Debug\net9.0\staticwebassets.build.json.cache

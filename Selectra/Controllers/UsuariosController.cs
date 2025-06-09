@@ -121,5 +121,26 @@ namespace Selectra.Controllers
             return Ok(roles);
         }
 
+        [HttpGet("verificar-existencia/{codUsuario}")] 
+        public async Task<IActionResult> VerificarExisteUsuario(string codUsuario)
+        {
+            var existe = await _usuarioService.VerificarExisteUsuario(codUsuario);
+
+            return Ok(existe);
+        }
+
+        [HttpPut("actualizarPersonal/{personalId}")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> actualizarPersonal([FromBody] ActualizarPersonalDto personalDto, int personalId)
+        {
+            var actualizado = await _usuarioService.ActualizarPersonal(personalDto, personalId,1);
+
+            if(!actualizado)
+            {
+                return BadRequest(new { message = "Error al actualizar el personal." });
+            }
+
+            return Ok(actualizado);
+        }
     }
 }

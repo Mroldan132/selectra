@@ -228,5 +228,96 @@ namespace Selectra.Services.Usuarios
                     Nombre = r.nombreRol
                 })
                 .ToListAsync();
+        public async Task<bool> VerificarExisteUsuario(string usuario) =>
+            await _context.Usuarios
+                .AnyAsync(u => u.codUsuario.ToLower() == usuario.ToLower());
+
+        public async Task<bool> ActualizarPersonal(ActualizarPersonalDto personalDto, int personalId, int usuarioQueModificaId)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                var personal = await _context.Personales
+                    .Include(p => p.DatosPersonales)
+                    .Include(p => p.DatosPersonales.Usuario)
+                    .FirstOrDefaultAsync(p => p.personalId == personalId);
+
+                // Si no se encuentra el personal, lanzar una excepción.
+                if (personal == null || personal.DatosPersonales == null || personal.DatosPersonales.Usuario == null)
+                {
+                    throw new KeyNotFoundException($"No se encontró el registro de personal con el ID {personalId}.");
+                }
+
+                // --- VALIDACIONES ---
+                // Validar que el nuevo email corporativo no esté en uso por OTRO personal.
+                if (personal.emailCorporativo != personalDto.EmailCorporativo)
+                {
+                    if (await _context.Personales.AnyAsync(p => p.emailCorporativo == personalDto.EmailCorporativo && p.personalId != personalId))
+                    {
+                        throw new ApplicationException($"El email corporativo '{personalDto.EmailCorporativo}' ya está en uso.");
+                    }
+                }
+
+                // Validar que el nuevo número de documento no esté en uso por OTRA persona.
+                if (personal.DatosPersonales.numeroDocumento != personalDto.NumeroDocumento)
+                {
+                    if (await _context.DatosPersonales.AnyAsync(dp => dp.tipoDocumentoId == personalDto.TipoDocumentoId && dp.numeroDocumento == personalDto.NumeroDocumento && dp.datosPersonalesId != personal.datosPersonalesId))
+                    {
+                        throw new ApplicationException($"El documento '{personalDto.NumeroDocumento}' ya está registrado.");
+                    }
+                }
+
+
+                // --- ACTUALIZACIÓN DE ENTIDADES ---
+                var ahora = DateTime.UtcNow;
+                var usuario = personal.DatosPersonales.Usuario;
+                var datosPersonales = personal.DatosPersonales;
+
+                // 3. Actualizar la entidad Usuario
+                usuario.rolId = personalDto.RolId;
+                usuario.activo = personalDto.Activo;
+                usuario.fechaUltMod = ahora;
+                usuario.usuarioUltModId = usuarioQueModificaId;
+
+                // Solo actualizar la contraseña si se proporcionó una nueva.
+                if (!string.IsNullOrWhiteSpace(personalDto.Clave))
+                {
+                    usuario.claveHash = BCrypt.Net.BCrypt.HashPassword(personalDto.Clave);
+                }
+
+                // 4. Actualizar la entidad DatosPersonales
+                datosPersonales.nombres = personalDto.Nombres;
+                datosPersonales.apellidoPaterno = personalDto.ApellidoPaterno;
+                datosPersonales.apellidoMaterno = personalDto.ApellidoMaterno;
+                datosPersonales.tipoDocumentoId = personalDto.TipoDocumentoId;
+                datosPersonales.numeroDocumento = personalDto.NumeroDocumento;
+                datosPersonales.emailPersonal = personalDto.EmailPersonal;
+                datosPersonales.telefono = personalDto.Telefono;
+                datosPersonales.ubigeoNacimientoId = personalDto.UbigeoNacimiento;
+                datosPersonales.ubigeoResidenciaId = personalDto.UbigeoResidencia;
+                datosPersonales.fechaNacimiento = personalDto.FechaNacimiento;
+                datosPersonales.fechaUltMod = ahora;
+                datosPersonales.usuarioUltModId = usuarioQueModificaId;
+
+                personal.emailCorporativo = personalDto.EmailCorporativo;
+                personal.areaId = personalDto.AreaId;
+                personal.cargoId = personalDto.CargoId;
+                personal.jefeDirectoId = personalDto.JefeDirectoId;
+                personal.fechaIngresoCompania = personalDto.FechaIngresoCompania;
+                personal.activo = personalDto.Activo;
+
+                await _context.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                throw; 
+            }
+        }
     }
 }

@@ -152,12 +152,86 @@
   },
   {
     "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "CrearOfertaLaboralRequerimiento",
+    "RelativePath": "api/OfertasLaborales/crearOfertaLaboralRequerimiento/{requerimientoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requerimientoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "DetalleOfertaLaboral",
+    "RelativePath": "api/OfertasLaborales/detalleOfertaLaboral/{ofertaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ofertaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "GenerarOfertaLaboral",
+    "RelativePath": "api/OfertasLaborales/generarOfertaLaboral",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ofertaLaboralDto",
+        "Type": "Selectra.DTOs.DetalleOfertaLaboralDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "ListaOfertasLaborales",
+    "RelativePath": "api/OfertasLaborales/listaOfertasLaborales",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
     "Method": "GetRequerimientosAprobados",
     "RelativePath": "api/OfertasLaborales/requerimientosAprobados",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.PersonalesController",
+    "Method": "DetallePersonal",
+    "RelativePath": "api/Personales/detallePersonal/{personalId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "personalId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -317,6 +391,27 @@
   },
   {
     "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "actualizarPersonal",
+    "RelativePath": "api/Usuarios/actualizarPersonal/{personalId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "personalDto",
+        "Type": "Selectra.DTOs.ActualizarPersonalDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "personalId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
     "Method": "GetListaRoles",
     "RelativePath": "api/Usuarios/listaRoles",
     "HttpMethod": "GET",
@@ -368,6 +463,22 @@
       {
         "Name": "registroDto",
         "Type": "Selectra.DTOs.RegistrarPersonalDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "VerificarExisteUsuario",
+    "RelativePath": "api/Usuarios/verificar-existencia/{codUsuario}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codUsuario",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

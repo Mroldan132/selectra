@@ -25,5 +25,13 @@ namespace Selectra.Controllers
             return Ok(listaJefes);
         }
 
+        [HttpGet("listaPersonal")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> GetListaPersonal()
+        {
+            var listaPersonal = await _personalesServices.GetListaPersonalessAsync();
+            return Ok(listaPersonal);
+
+        }
     }
 }

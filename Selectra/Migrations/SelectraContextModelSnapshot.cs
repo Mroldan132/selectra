@@ -54,6 +54,47 @@ namespace Selectra.Migrations
                     b.ToTable("Areas");
                 });
 
+            modelBuilder.Entity("Selectra.Models.Aspirantes", b =>
+                {
+                    b.Property<int>("aspiranteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("aspiranteId"));
+
+                    b.Property<int>("datosPersonalesId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("fechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("fechaUltMod")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("nivelAcademicoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("pathCV")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("pathFoto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("usuarioUltModId")
+                        .HasColumnType("int");
+
+                    b.HasKey("aspiranteId");
+
+                    b.HasIndex("datosPersonalesId");
+
+                    b.HasIndex("nivelAcademicoId");
+
+                    b.ToTable("Aspirantes");
+                });
+
             modelBuilder.Entity("Selectra.Models.Cargo", b =>
                 {
                     b.Property<int>("cargoId")
@@ -136,15 +177,18 @@ namespace Selectra.Migrations
                     b.Property<int>("tipoDocumentoId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ubigeoNacimiento")
+                    b.Property<string>("ubigeoNacimientoId")
                         .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)");
 
-                    b.Property<string>("ubigeoResidencia")
+                    b.Property<string>("ubigeoResidenciaId")
                         .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)");
+
+                    b.Property<int>("usuarioId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("usuarioUltModId")
                         .HasColumnType("int");
@@ -152,6 +196,12 @@ namespace Selectra.Migrations
                     b.HasKey("datosPersonalesId");
 
                     b.HasIndex("tipoDocumentoId");
+
+                    b.HasIndex("ubigeoNacimientoId");
+
+                    b.HasIndex("ubigeoResidenciaId");
+
+                    b.HasIndex("usuarioId");
 
                     b.ToTable("DatosPersonales");
                 });
@@ -317,6 +367,23 @@ namespace Selectra.Migrations
                     b.ToTable("HistorialAprobaciones");
                 });
 
+            modelBuilder.Entity("Selectra.Models.NivelAcademico", b =>
+                {
+                    b.Property<int>("nivelAcademicoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("nivelAcademicoId"));
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("nivelAcademicoId");
+
+                    b.ToTable("NivelAcademicos");
+                });
+
             modelBuilder.Entity("Selectra.Models.NotificacionesUsuarios", b =>
                 {
                     b.Property<int>("notificacionId")
@@ -359,7 +426,7 @@ namespace Selectra.Migrations
 
                     b.HasIndex("usuarioId");
 
-                    b.ToTable("notificacionesUsuarios");
+                    b.ToTable("NotificacionesUsuarios");
                 });
 
             modelBuilder.Entity("Selectra.Models.OfertaLaboral", b =>
@@ -564,7 +631,7 @@ namespace Selectra.Migrations
                     b.Property<int?>("jefeDirectoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("usuarioId")
+                    b.Property<int?>("personalId1")
                         .HasColumnType("int");
 
                     b.HasKey("personalId");
@@ -575,9 +642,7 @@ namespace Selectra.Migrations
 
                     b.HasIndex("datosPersonalesId");
 
-                    b.HasIndex("jefeDirectoId");
-
-                    b.HasIndex("usuarioId");
+                    b.HasIndex("personalId1");
 
                     b.ToTable("Personales");
                 });
@@ -590,10 +655,8 @@ namespace Selectra.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("postulanteId"));
 
-                    b.Property<string>("cvPath")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                    b.Property<int>("aspiranteId")
+                        .HasColumnType("int");
 
                     b.Property<string>("email")
                         .IsRequired()
@@ -644,6 +707,8 @@ namespace Selectra.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("postulanteId");
+
+                    b.HasIndex("aspiranteId");
 
                     b.HasIndex("estadoPostulanteId");
 
@@ -905,6 +970,42 @@ namespace Selectra.Migrations
                     b.ToTable("TiposRequerimientos");
                 });
 
+            modelBuilder.Entity("Selectra.Models.Ubigeo", b =>
+                {
+                    b.Property<string>("ubigeoId")
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
+                    b.Property<string>("departamento")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("departamentoId")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<string>("distrito")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("distritoId")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
+
+                    b.Property<string>("provincia")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("ubigeoId");
+
+                    b.ToTable("Ubigeos");
+                });
+
             modelBuilder.Entity("Selectra.Models.Usuario", b =>
                 {
                     b.Property<int>("usuarioId")
@@ -944,6 +1045,25 @@ namespace Selectra.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("Selectra.Models.Aspirantes", b =>
+                {
+                    b.HasOne("Selectra.Models.DatosPersonales", "DatosPersonales")
+                        .WithMany()
+                        .HasForeignKey("datosPersonalesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Selectra.Models.NivelAcademico", "NivelAcademico")
+                        .WithMany()
+                        .HasForeignKey("nivelAcademicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DatosPersonales");
+
+                    b.Navigation("NivelAcademico");
+                });
+
             modelBuilder.Entity("Selectra.Models.DatosPersonales", b =>
                 {
                     b.HasOne("Selectra.Models.TipoDocumento", "TipoDocumento")
@@ -952,7 +1072,31 @@ namespace Selectra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Selectra.Models.Ubigeo", "UbigeoNacimiento")
+                        .WithMany()
+                        .HasForeignKey("ubigeoNacimientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Selectra.Models.Ubigeo", "UbigeoResidencia")
+                        .WithMany()
+                        .HasForeignKey("ubigeoResidenciaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Selectra.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("usuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("TipoDocumento");
+
+                    b.Navigation("UbigeoNacimiento");
+
+                    b.Navigation("UbigeoResidencia");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Selectra.Models.HistorialAprobacion", b =>
@@ -1116,29 +1260,25 @@ namespace Selectra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Selectra.Models.Personal", "JefeDirecto")
+                    b.HasOne("Selectra.Models.Personal", null)
                         .WithMany("Subordinados")
-                        .HasForeignKey("jefeDirectoId");
-
-                    b.HasOne("Selectra.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("usuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("personalId1");
 
                     b.Navigation("Area");
 
                     b.Navigation("Cargo");
 
                     b.Navigation("DatosPersonales");
-
-                    b.Navigation("JefeDirecto");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Selectra.Models.Postulante", b =>
                 {
+                    b.HasOne("Selectra.Models.Aspirantes", "Aspirantes")
+                        .WithMany()
+                        .HasForeignKey("aspiranteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Selectra.Models.EstadoPostulante", "EstadoPostulante")
                         .WithMany()
                         .HasForeignKey("estadoPostulanteId")
@@ -1154,6 +1294,8 @@ namespace Selectra.Migrations
                     b.HasOne("Selectra.Models.Usuario", "UsuarioUltMod")
                         .WithMany()
                         .HasForeignKey("usuarioUltModId");
+
+                    b.Navigation("Aspirantes");
 
                     b.Navigation("EstadoPostulante");
 

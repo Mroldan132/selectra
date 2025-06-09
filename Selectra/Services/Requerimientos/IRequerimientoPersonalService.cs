@@ -13,5 +13,6 @@ namespace Selectra.Services.Requerimiento
         Task<string> AprobarRechazarRequerimientoAsync(AprobarRechazarRequerimientoDto aprobarRechazardto,int usuarioUltMod);
         Task<IEnumerable<ListaEstadosRequerimientoDto>> GetListaEstadosRequerimientoAsync();
 
+        Task<IEnumerable<ListaRequerimientosAprobadosDto>> GetListaRequerimientosAprobados();
     }
 }

@@ -21,5 +21,25 @@ namespace Selectra.Services.Personales
                 NombreCargo = p.Cargo.nombreCargo
             })
             .ToListAsync();
+
+        public async Task<IEnumerable<ListaPersonalDto>> GetListaPersonalessAsync()
+        {
+            return await _context.Personales
+                .Include(p => p.DatosPersonales)
+                .Include(p => p.Cargo)
+                .Include(p => p.Area)
+                .Select(p => new ListaPersonalDto { 
+                    codUsuario = p.DatosPersonales.Usuario.codUsuario,
+                    nombres = p.DatosPersonales.nombres,
+                    apellidoPaterno = p.DatosPersonales.apellidoPaterno,
+                    apellidoMaterno = p.DatosPersonales.apellidoMaterno,
+                    rolNombre = p.DatosPersonales.Usuario.Rol.nombreRol,
+                    areaNombre = p.Area.nombreArea,
+                    cargoNombre = p.Cargo.nombreCargo,
+                    activo = p.activo ? "Activo" : "Inactivo"
+                })
+                .ToListAsync();
+
+        }
     }
 }

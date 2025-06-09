@@ -13,7 +13,9 @@ namespace Selectra.Models
         [ForeignKey("OfertaLaboral")]
         public int ofertaId { get; set; }
         public virtual OfertaLaboral OfertaLaboral { get; set; }
-
+        [ForeignKey("Aspirantes")]
+        public int aspiranteId { get; set; }
+        public virtual Aspirantes Aspirantes { get; set; }
         [Required]
         [StringLength(300)]
         public string nombreCompleto { get; set; }
@@ -29,9 +31,6 @@ namespace Selectra.Models
 
         [StringLength(20)]
         public string numeroDocumento { get; set; } 
-
-        [StringLength(500)] 
-        public string cvPath { get; set; }
 
         [Required]
         public DateTime fechaPostulacion { get; set; }

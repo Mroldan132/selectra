@@ -5,5 +5,6 @@ namespace Selectra.Services.Personales
     public interface IPersonalesServices
     {
         public Task<IEnumerable<ListaJefesPersonalDto>> GetListaJefesDirectosAsync();
+        public Task<IEnumerable<ListaPersonalDto>> GetListaPersonalessAsync();
     }
 }

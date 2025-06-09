@@ -9,6 +9,10 @@ namespace Selectra.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int datosPersonalesId { get; set; }
         [Required]
+        public int usuarioId { get; set; }
+        [ForeignKey("usuarioId")]
+        public virtual Usuario Usuario { get; set; }
+        [Required]
         [StringLength(200)]
         public string apellidoPaterno { get; set; }
         [Required]
@@ -27,10 +31,16 @@ namespace Selectra.Models
         public string telefono { get; set; }
         [StringLength(50)]
         public string emailPersonal { get; set; }
+
+        [ForeignKey("UbigeoNacimiento")]
         [StringLength(6)]
-        public string ubigeoNacimiento { get; set; }
+        public string ubigeoNacimientoId { get; set; }
+        public virtual Ubigeo UbigeoNacimiento { get; set; }
+
+        [ForeignKey("UbigeoResidencia")]
         [StringLength(6)]
-        public string ubigeoResidencia { get; set; }
+        public string ubigeoResidenciaId { get; set; }
+        public virtual Ubigeo UbigeoResidencia { get; set; }
         public DateTime? fechaNacimiento { get; set; }
         public DateTime fechaCreacion { get; set; }
         public DateTime fechaUltMod { get; set; }

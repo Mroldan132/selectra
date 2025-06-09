@@ -341,5 +341,23 @@ namespace Selectra.Services.Requerimiento
                 nombreEstado = e.nombreEstado
             })
             .ToListAsync();
+        public async Task<IEnumerable<ListaRequerimientosAprobadosDto>> GetListaRequerimientosAprobados()
+        {
+            var requerimientos = await _context.RequerimientosPersonales
+                .Where(r => r.EstadoRequerimiento.codigoEstado == "APR")
+                .Select(r => new ListaRequerimientosAprobadosDto
+                {
+                    IdRequerimiento = r.requerimientoId,
+                    TipoRequerimiento = r.tituloRequerimiento,
+                    Solicitante = $"{r.Solicitante.DatosPersonales.nombres} {r.Solicitante.DatosPersonales.apellidoPaterno}",
+                    FechaAprobacion = r.HistorialAprobaciones
+                        .Where(i => i.requerimientoId == r.requerimientoId)
+                        .Select(i => i.fechaDecision)
+                        .FirstOrDefault(),
+                    EstadoRequerimiento = r.EstadoRequerimiento.nombreEstado
+                })
+                .ToListAsync();
+            return requerimientos;
+        }
     }
 }

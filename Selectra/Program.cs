@@ -6,7 +6,10 @@ using Selectra.Models;
 using Selectra.Services;
 using Selectra.Services.Areas;
 using Selectra.Services.Cargos;
+using Selectra.Services.DatosPersonales;
+using Selectra.Services.NivelesAcademicos;
 using Selectra.Services.Notificaciones;
+using Selectra.Services.OfertasLaborales;
 using Selectra.Services.Personales;
 using Selectra.Services.Requerimiento;
 using Selectra.Services.Usuarios;
@@ -24,6 +27,9 @@ builder.Services.AddScoped<IAreaService, AreaService>();
 builder.Services.AddScoped<ICargosService,CargosServices>();
 builder.Services.AddScoped<IPersonalesServices, PersonalesServices>();
 builder.Services.AddScoped<INotificacionesServices, NotificacionesServices>();
+builder.Services.AddScoped<INivelesAcademicosService, NivelesAcademicosService>();
+builder.Services.AddScoped<IDatosPersonalesService, DatosPersonalesServices>();
+builder.Services.AddScoped<IOfertasLaboralesServices, OfertasLaboralesServices>();
 
 //Conexion a la base de datos
 builder.Services.AddDbContext<SelectraContext>(options =>

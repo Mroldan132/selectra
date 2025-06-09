@@ -20,7 +20,7 @@ namespace Selectra.Controllers
         private readonly SelectraContext _context;
 
         public RequerimientosPersonalesController(
-            IRequerimientoPersonalService requerimientoService, 
+            IRequerimientoPersonalService requerimientoService,
             INotificacionesServices notificacionesServices,
             SelectraContext context)
         {
@@ -39,7 +39,9 @@ namespace Selectra.Controllers
                 return Forbid("No se pudo identificar al usuario.");
             }
 
-            var personalSolicitante = await _context.Personales.FirstOrDefaultAsync(p => p.usuarioId == usuarioId);
+            var personalSolicitante = await _context.Personales
+                .Include(p => p.DatosPersonales)
+                .FirstOrDefaultAsync(p => p.DatosPersonales.usuarioId == usuarioId);
             if (personalSolicitante == null)
             {
                 return BadRequest("Personal no encontrado");
@@ -84,7 +86,9 @@ namespace Selectra.Controllers
                 return Forbid("No se pudo identificar al usuario solicitante.");
             }
 
-            var personalSolicitante = await _context.Personales.FirstOrDefaultAsync(p => p.usuarioId == usuarioSolicitanteId);
+            var personalSolicitante = await _context.Personales
+                .Include(p => p.DatosPersonales)
+                .FirstOrDefaultAsync(p => p.DatosPersonales.usuarioId == usuarioSolicitanteId);
             if (personalSolicitante == null)
             {
                 return BadRequest(new { message = "El usuario solicitante no tiene un registro de personal asociado." });
@@ -94,10 +98,11 @@ namespace Selectra.Controllers
             {
                 var requerimientoCreadoDto = await _requerimientoService.CrearRequerimientoAsync(dto, personalSolicitante.personalId, usuarioSolicitanteId);
 
-                if(requerimientoCreadoDto != null) { 
+                if (requerimientoCreadoDto != null)
+                {
                     if (requerimientoCreadoDto.AprobadorId.HasValue)
                     {
-                       await _notificacionesService.CrearNotificacionNuevoRequerimientoAsync(requerimientoCreadoDto);
+                        await _notificacionesService.CrearNotificacionNuevoRequerimientoAsync(requerimientoCreadoDto);
                     }
                 }
                 return CreatedAtAction(nameof(GetRequerimientoPorId), new { id = requerimientoCreadoDto?.RequerimientoId }, requerimientoCreadoDto);
@@ -140,7 +145,7 @@ namespace Selectra.Controllers
                 return Forbid("No se pudo identificar al usuario.");
             }
 
-            var personalActual = await _context.Personales.FirstOrDefaultAsync(p => p.usuarioId == usuarioId);
+            var personalActual = await _context.Personales.Include(p => p.DatosPersonales).FirstOrDefaultAsync(p => p.DatosPersonales.usuarioId == usuarioId);
             if (personalActual == null)
             {
                 return BadRequest(new { message = "El usuario actual no tiene un registro de personal asociado." });
@@ -170,7 +175,7 @@ namespace Selectra.Controllers
         }
 
 
-        [HttpGet("getRequerimientoPorId/{id}")] 
+        [HttpGet("getRequerimientoPorId/{id}")]
         [Authorize(Roles = "Solicitante,JefeAprobador,RRHH,Administrador")]
         public async Task<IActionResult> GetRequerimientoPorId(int id)
         {
@@ -180,7 +185,7 @@ namespace Selectra.Controllers
                 return Forbid("No se pudo identificar al usuario.");
             }
 
-            var personalActual = await _context.Personales.FirstOrDefaultAsync(p => p.usuarioId == usuarioId);
+            var personalActual = await _context.Personales.Include(p => p.DatosPersonales).FirstOrDefaultAsync(p => p.DatosPersonales.usuarioId == usuarioId);
             if (personalActual == null)
             {
                 return BadRequest(new { message = "El usuario actual no tiene un registro de personal asociado." });
@@ -210,7 +215,7 @@ namespace Selectra.Controllers
         {
             var listaTiposRequerimientos = await _requerimientoService.GetListaTiposRequerimientosAsync();
 
-            if(listaTiposRequerimientos == null)
+            if (listaTiposRequerimientos == null)
             {
                 return NoContent();
             }
@@ -263,7 +268,7 @@ namespace Selectra.Controllers
             }
             catch (DbUpdateException dbEx)
             {
-                return StatusCode(500, new { message = "Error al guardar en la base de datos. Verifique los datos." }    );
+                return StatusCode(500, new { message = "Error al guardar en la base de datos. Verifique los datos." });
             }
             catch (Exception ex)
             {
@@ -281,7 +286,7 @@ namespace Selectra.Controllers
                 return Forbid("No se pudo identificar al usuario.");
             }
 
-            var personalSolicitante = await _context.Personales.FirstOrDefaultAsync(p => p.usuarioId == usuarioId);
+            var personalSolicitante = await _context.Personales.Include(p => p.DatosPersonales).FirstOrDefaultAsync(p => p.DatosPersonales  .usuarioId == usuarioId);
             if (personalSolicitante == null)
             {
                 return BadRequest("Personal no encontrado");
@@ -307,5 +312,24 @@ namespace Selectra.Controllers
             }
         }
 
+        [HttpGet("ListaRequerimientosAprobados")]
+        [Authorize(Roles = "RRHH,Administrador")]
+        public async Task<IActionResult> GetListaRequerimientosAprobados()
+        {
+            try
+            {
+                var listaRequerimientosAprobados = await _requerimientoService.GetListaRequerimientosAprobados();
+                if (listaRequerimientosAprobados == null || !listaRequerimientosAprobados.Any())
+                {
+                    return NoContent();
+                }
+                return Ok(listaRequerimientosAprobados);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Ocurrió un error interno al obtener la lista de requerimientos aprobados." });
+            }
+
+        }
     }
 }

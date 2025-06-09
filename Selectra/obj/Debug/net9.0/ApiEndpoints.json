@@ -36,6 +36,68 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Selectra.Controllers.DatosPersonalesController",
+    "Method": "GetListaDepartamentos",
+    "RelativePath": "api/DatosPersonales/ListaDepartamentos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.DatosPersonalesController",
+    "Method": "GetListaDistritos",
+    "RelativePath": "api/DatosPersonales/ListaDistritos/{provinciaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "provinciaId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.DatosPersonalesController",
+    "Method": "GetListaProvincias",
+    "RelativePath": "api/DatosPersonales/ListaProvincias/{departamentoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "departamentoId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.DatosPersonalesController",
+    "Method": "GetListaTiposDocumento",
+    "RelativePath": "api/DatosPersonales/ListaTiposDocumento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NivelesAcademicosController",
+    "Method": "GetListaNivelesAcademicos",
+    "RelativePath": "api/NivelesAcademicos/ListaNivelesAcademicos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Selectra.Controllers.NotificacionesController",
     "Method": "GetListNotificaciones",
     "RelativePath": "api/Notificaciones/GetListNotificaciones/{usuarioId}",
@@ -89,9 +151,29 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "GetRequerimientosAprobados",
+    "RelativePath": "api/OfertasLaborales/requerimientosAprobados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Selectra.Controllers.PersonalesController",
     "Method": "GetListaJefesDirectos",
     "RelativePath": "api/Personales/elegiblesComoJefe",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.PersonalesController",
+    "Method": "GetListaPersonal",
+    "RelativePath": "api/Personales/listaPersonal",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -179,6 +261,16 @@
   },
   {
     "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetListaRequerimientosAprobados",
+    "RelativePath": "api/RequerimientosPersonales/ListaRequerimientosAprobados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
     "Method": "GetListaTiposRequerimientos",
     "RelativePath": "api/RequerimientosPersonales/ListaTiposRequerimiento",
     "HttpMethod": "GET",
@@ -225,15 +317,57 @@
   },
   {
     "ContainingType": "Selectra.Controllers.UsuariosController",
-    "Method": "Registrar",
-    "RelativePath": "api/Usuarios/registrar",
+    "Method": "GetListaRoles",
+    "RelativePath": "api/Usuarios/listaRoles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "RegistrarAdministrador",
+    "RelativePath": "api/Usuarios/registrarAdministrador",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "registroDto",
-        "Type": "Selectra.DTOs.RegistrarUsuarioDto",
+        "Type": "Selectra.DTOs.RegistrarAdministradorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "RegistrarAspirante",
+    "RelativePath": "api/Usuarios/registrarAspirante",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registroDto",
+        "Type": "Selectra.DTOs.RegistrarAspiranteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "RegistrarPersonal",
+    "RelativePath": "api/Usuarios/registrarPersonal",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registroDto",
+        "Type": "Selectra.DTOs.RegistrarPersonalDto",
         "IsRequired": true
       }
     ],

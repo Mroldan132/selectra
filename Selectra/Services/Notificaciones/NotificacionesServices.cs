@@ -80,6 +80,7 @@ namespace Selectra.Services.Notificaciones
             if (requerimientoCreadoDto?.AprobadorId is int aprobadorId)
             {
                 var personal = await _context.Personales
+                    .Include(p => p.DatosPersonales)
                     .FirstOrDefaultAsync(i => i.personalId == requerimientoCreadoDto.AprobadorId);
                 if (personal == null)
                 {
@@ -88,7 +89,7 @@ namespace Selectra.Services.Notificaciones
 
                 var notificacion = new CrearNotificacionDto
                 {
-                    usuarioId = personal.usuarioId,
+                    usuarioId = personal.DatosPersonales.usuarioId,
                     titulo = "Nuevo Requerimiento",
                     mensaje = $"Se ha creado un nuevo requerimiento: '{requerimientoCreadoDto.TituloRequerimiento}' (ID {requerimientoCreadoDto.RequerimientoId}).",
                     tipo = "Requerimiento",
@@ -114,6 +115,7 @@ namespace Selectra.Services.Notificaciones
             }
 
             var personal = await _context.Personales
+                .Include(p => p.DatosPersonales)
                 .FirstOrDefaultAsync(e => e.personalId == requerimiento.solicitanteId);
 
             if(personal == null)
@@ -122,7 +124,7 @@ namespace Selectra.Services.Notificaciones
             }
             var notificacion = new CrearNotificacionDto
             {
-                usuarioId = personal.usuarioId,
+                usuarioId = personal.DatosPersonales.usuarioId,
                 titulo = $"Requerimiento {estadoRequerimiento?.nombreEstado}",
                 mensaje = aprobarRechazardto.Observaciones,
                 tipo = estadoRequerimiento.codigoEstado.Equals("APR") ? "RequerimientoAprobado" : "RequerimientoRechazado",

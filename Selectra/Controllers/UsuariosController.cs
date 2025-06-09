@@ -15,15 +15,39 @@ namespace Selectra.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly SelectraContext _context;
-        public UsuariosController(IUsuarioService usuarioService,SelectraContext context)
+        public UsuariosController(IUsuarioService usuarioService, SelectraContext context)
         {
             _usuarioService = usuarioService;
             _context = context;
 
         }
 
-        [HttpPost("registrar")]
-        public async Task<IActionResult> Registrar([FromBody] RegistrarUsuarioDto registroDto)
+        [HttpPost("registrarAdministrador")]
+        public async Task<IActionResult> RegistrarAdministrador([FromBody] RegistrarAdministradorDto registroDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var nuevoUsuario = await _usuarioService.RegistrarAdministradorAsync(registroDto, 1);
+                return CreatedAtAction(nameof(GetUsuarioPorId), new { id = nuevoUsuario.usuarioId }, new { nuevoUsuario.usuarioId, nuevoUsuario.codUsuario });
+            }
+            catch (ApplicationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Ocurrió un error interno al registrar el usuario." });
+            }
+        }
+
+        [HttpPost("registrarPersonal")]
+        [Authorize(Roles = "Administrador,RRHH")]
+        public async Task<IActionResult> RegistrarPersonal([FromBody] RegistrarPersonalDto registroDto)
         {
             if (!ModelState.IsValid)
             {
@@ -37,14 +61,39 @@ namespace Selectra.Controllers
 
             try
             {
-                var nuevoUsuario = await _usuarioService.RegistrarUsuarioAsync(registroDto, 1);
+                var nuevoUsuario = await _usuarioService.RegistrarPersonalAsync(registroDto, 1);
                 return CreatedAtAction(nameof(GetUsuarioPorId), new { id = nuevoUsuario.usuarioId }, new { nuevoUsuario.usuarioId, nuevoUsuario.codUsuario });
             }
             catch (ApplicationException ex)
             {
                 return BadRequest(new { message = ex.Message });
             }
-            catch (Exception ex) 
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Ocurrió un error interno al registrar el usuario." });
+            }
+        }
+
+        [HttpPost("registrarAspirante")]
+        public async Task<IActionResult> RegistrarAspirante([FromBody] RegistrarAspiranteDto registroDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (!await _context.Roles.AnyAsync(r => r.rolId == 4))
+                return BadRequest(new { message = $"El Rol Aspirante no es válido." });
+
+            try
+            {
+                var nuevoUsuario = await _usuarioService.RegistrarAspiranteAsync(registroDto, 1);
+                return CreatedAtAction(nameof(GetUsuarioPorId), new { id = nuevoUsuario.usuarioId }, new { nuevoUsuario.usuarioId, nuevoUsuario.codUsuario });
+            }
+            catch (ApplicationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Ocurrió un error interno al registrar el usuario." });
             }
@@ -54,7 +103,7 @@ namespace Selectra.Controllers
         [Authorize(Roles = "Administrador,RRHH")]
         public async Task<IActionResult> GetUsuarioPorId(int id)
         {
-            var usuarioDto = await _usuarioService.GetUsuarioPorIdAsync(id); 
+            var usuarioDto = await _usuarioService.GetUsuarioPorIdAsync(id);
 
             if (usuarioDto == null)
             {
@@ -62,6 +111,14 @@ namespace Selectra.Controllers
             }
 
             return Ok(usuarioDto);
+        }
+
+        [HttpGet("listaRoles")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> GetListaRoles()
+        {
+            var roles = await _usuarioService.GetListaRolesAync();
+            return Ok(roles);
         }
 
     }

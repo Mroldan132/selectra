@@ -29,6 +29,9 @@ namespace Selectra.Models
         public DbSet<Rol> Roles { get; set; }
         public DbSet<EstadoRequerimiento> EstadosRequerimientos { get; set; }
         public DbSet<NotificacionesUsuarios> NotificacionesUsuarios { get; set; }
+        public DbSet<NivelAcademico> NivelAcademicos { get; set; }
+        public DbSet<Aspirantes> Aspirantes { get; set; }
+        public DbSet<Ubigeo> Ubigeos { get; set; }
 
 
 

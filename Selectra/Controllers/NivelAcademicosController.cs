@@ -45,16 +45,16 @@ namespace Selectra.Controllers
         }
         [HttpPut]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> ActualizarNivelAcademicos([FromBody] ActualizarNivelAcademicosDto nivelAcademicosDto, int nombreId)
+        public async Task<IActionResult> ActualizarNivelAcademicos([FromBody] ListaNivelAcademicosDto dto)
         {
-            if (nivelAcademicosDto == null || nombreId <= 0)
+            if (dto ==null)
+            
+                return BadRequest("Datos inválidos para actualizar un nivel académico.");
+            
+            var actualizarnivel = await _nivelAcademicosService.ActualizarNivelAcademicosAsync(dto);
+            if (!actualizarnivel)
             {
-                return BadRequest("Datos inválidos para actualizar el nivel académico.");
-            }
-            var resultado = await _nivelAcademicosService.ActualizarNivelAcademicosAsync(nivelAcademicosDto, nombreId);
-            if (!resultado)
-            {
-                return NotFound("Nivel académico no encontrado o error al actualizar.");
+                return BadRequest("Error al actualizar el nivel académico.");
             }
             return Ok("Se actualizo correctamente el nivel");
         }

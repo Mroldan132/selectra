@@ -7,6 +7,6 @@ namespace Selectra.Services.NivelAcademicos
       
         public Task<List<ListaNivelAcademicosDto>> GetListaNivelAcademicosAsync();
         public Task<bool> CrearNivelAcademicosAsync(ListaNivelAcademicosDto dto);
-        public Task<bool> ActualizarNivelAcademicosAsync(ActualizarNivelAcademicosDto nivelAcademicosDto, int nombreId);
+        public Task<bool> ActualizarNivelAcademicosAsync(ListaNivelAcademicosDto dto);
     }
 }

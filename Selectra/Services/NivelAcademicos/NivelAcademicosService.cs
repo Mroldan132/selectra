@@ -32,17 +32,17 @@ namespace Selectra.Services.NivelAcademicos
             return true;
 
         }
-        public async Task<bool> ActualizarNivelAcademicosAsync(ActualizarNivelAcademicosDto nivelAcademicosDto, int nombreId)
+       public async Task<bool> ActualizarNivelAcademicosAsync(ListaNivelAcademicosDto dto)
         {
-            var nivelAcademico = await _context.NivelAcademicos.FindAsync(nombreId);
-            if (nivelAcademico == null)
+            var nivelAcademico = new Models.NivelAcademicos
             {
-                return false; // Nivel académico no encontrado
-            }
-            nivelAcademico.nombre = nivelAcademicosDto.nombre;
+               nivelAcademicoId = dto.nivelAcademicoId,
+                nombre = dto.nombre,
+            };
             _context.NivelAcademicos.Update(nivelAcademico);
             await _context.SaveChangesAsync();
             return true;
+
         }
     }
 }

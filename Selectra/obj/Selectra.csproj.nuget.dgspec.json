@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Selectra.csproj": {}
+    "E:\\Proyecto Selectra\\Selectra\\Selectra.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Selectra.csproj": {
+    "E:\\Proyecto Selectra\\Selectra\\Selectra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Selectra.csproj",
+        "projectUniqueName": "E:\\Proyecto Selectra\\Selectra\\Selectra.csproj",
         "projectName": "Selectra",
-        "projectPath": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\Selectra.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\source\\repos\\selectra\\Selectra\\obj\\",
+        "projectPath": "E:\\Proyecto Selectra\\Selectra\\Selectra.csproj",
+        "packagesPath": "C:\\Users\\Renzo\\.nuget\\packages\\",
+        "outputPath": "E:\\Proyecto Selectra\\Selectra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Renzo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -104,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

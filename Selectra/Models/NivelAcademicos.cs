@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Selectra.Models
 {
-    public class NivelAcademico
+    public class NivelAcademicos
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

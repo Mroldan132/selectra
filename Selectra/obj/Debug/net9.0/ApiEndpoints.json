@@ -88,13 +88,50 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Selectra.Controllers.NivelesAcademicosController",
-    "Method": "GetListaNivelesAcademicos",
-    "RelativePath": "api/NivelesAcademicos/ListaNivelesAcademicos",
+    "ContainingType": "Selectra.Controllers.NivelAcademicosController",
+    "Method": "GetListaNivelAcademicos",
+    "RelativePath": "api/NivelAcademicos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NivelAcademicosController",
+    "Method": "CrearNivelAcademicos",
+    "RelativePath": "api/NivelAcademicos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.ListaNivelAcademicosDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NivelAcademicosController",
+    "Method": "ActualizarNivelAcademicos",
+    "RelativePath": "api/NivelAcademicos",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nivelAcademicosDto",
+        "Type": "Selectra.DTOs.ActualizarNivelAcademicosDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "nombreId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {

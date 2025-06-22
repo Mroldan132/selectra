@@ -14,7 +14,7 @@ namespace Selectra.Models
         public virtual DatosPersonales DatosPersonales { get; set; }
         [ForeignKey("NivelAcademico")]
         public int nivelAcademicoId { get; set; }
-        public virtual NivelAcademico NivelAcademico { get; set; }
+        public virtual NivelAcademicos NivelAcademico { get; set; }
         [Required]
         public bool estado { get; set; }
         public string? pathCV { get; set; }

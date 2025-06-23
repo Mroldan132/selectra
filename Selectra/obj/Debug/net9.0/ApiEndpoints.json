@@ -122,14 +122,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "nivelAcademicosDto",
-        "Type": "Selectra.DTOs.ActualizarNivelAcademicosDto",
+        "Name": "dto",
+        "Type": "Selectra.DTOs.ListaNivelAcademicosDto",
         "IsRequired": true
-      },
-      {
-        "Name": "nombreId",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []

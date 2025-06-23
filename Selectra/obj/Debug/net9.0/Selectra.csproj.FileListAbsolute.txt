@@ -484,7 +484,6 @@ E:\Proyecto Selectra\Selectra\obj\Debug\net9.0\staticwebassets.build.json
 E:\Proyecto Selectra\Selectra\obj\Debug\net9.0\staticwebassets.build.json.cache
 E:\Proyecto Selectra\Selectra\obj\Debug\net9.0\staticwebassets.development.json
 E:\Proyecto Selectra\Selectra\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-E:\Proyecto Selectra\Selectra\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 E:\Proyecto Selectra\Selectra\obj\Debug\net9.0\Selectra.csproj.Up2Date
 E:\Proyecto Selectra\Selectra\obj\Debug\net9.0\Selectra.dll
 E:\Proyecto Selectra\Selectra\obj\Debug\net9.0\refint\Selectra.dll

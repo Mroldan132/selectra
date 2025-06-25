@@ -13,6 +13,7 @@ using Selectra.Services.OfertasLaborales;
 using Selectra.Services.Personales;
 using Selectra.Services.Requerimiento;
 using Selectra.Services.Usuarios;
+using Selectra.Services.Vacaciones;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,7 @@ builder.Services.AddScoped<INotificacionesServices, NotificacionesServices>();
 builder.Services.AddScoped<INivelAcademicosService, NivelAcademicosService>();
 builder.Services.AddScoped<IDatosPersonalesService, DatosPersonalesServices>();
 builder.Services.AddScoped<IOfertasLaboralesServices, OfertasLaboralesServices>();
+builder.Services.AddScoped<ISolicitudVacacionesService, SolicitudVacacionesService>();
 
 //Conexion a la base de datos
 builder.Services.AddDbContext<SelectraContext>(options =>

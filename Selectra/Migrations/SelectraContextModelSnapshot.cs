@@ -316,6 +316,24 @@ namespace Selectra.Migrations
                     b.ToTable("EstadosRequerimientos");
                 });
 
+            modelBuilder.Entity("Selectra.Models.EstadoSolicitudVacaciones", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("EstadoSolicitudVacaciones");
+                });
+
             modelBuilder.Entity("Selectra.Models.HistorialAprobacion", b =>
                 {
                     b.Property<int>("historialAprobacionId")
@@ -367,7 +385,7 @@ namespace Selectra.Migrations
                     b.ToTable("HistorialAprobaciones");
                 });
 
-            modelBuilder.Entity("Selectra.Models.NivelAcademico", b =>
+            modelBuilder.Entity("Selectra.Models.NivelAcademicos", b =>
                 {
                     b.Property<int>("nivelAcademicoId")
                         .ValueGeneratedOnAdd()
@@ -607,6 +625,12 @@ namespace Selectra.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("personalId"));
+
+                    b.Property<decimal>("DiasVacacionesDisponibles")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("FechaUltimaAcreditacionVacaciones")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("activo")
                         .HasColumnType("bit");
@@ -900,6 +924,51 @@ namespace Selectra.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("Selectra.Models.SolicitudVacaciones", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int?>("AprobadorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ComentariosAprobador")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ComentariosEmpleado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("estadoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("personalId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("AprobadorId");
+
+                    b.HasIndex("estadoId");
+
+                    b.HasIndex("personalId");
+
+                    b.ToTable("SolicitudVacaciones");
+                });
+
             modelBuilder.Entity("Selectra.Models.TipoDocumento", b =>
                 {
                     b.Property<int>("tipoDocumentoId")
@@ -1048,7 +1117,7 @@ namespace Selectra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Selectra.Models.NivelAcademico", "NivelAcademico")
+                    b.HasOne("Selectra.Models.NivelAcademicos", "NivelAcademico")
                         .WithMany()
                         .HasForeignKey("nivelAcademicoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1400,6 +1469,32 @@ namespace Selectra.Migrations
                     b.Navigation("UsuarioUltMod");
                 });
 
+            modelBuilder.Entity("Selectra.Models.SolicitudVacaciones", b =>
+                {
+                    b.HasOne("Selectra.Models.Personal", "Aprobador")
+                        .WithMany()
+                        .HasForeignKey("AprobadorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Selectra.Models.EstadoSolicitudVacaciones", "Estado")
+                        .WithMany()
+                        .HasForeignKey("estadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Selectra.Models.Personal", "Personal")
+                        .WithMany("Solicitudes")
+                        .HasForeignKey("personalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aprobador");
+
+                    b.Navigation("Estado");
+
+                    b.Navigation("Personal");
+                });
+
             modelBuilder.Entity("Selectra.Models.TiposRequerimiento", b =>
                 {
                     b.HasOne("Selectra.Models.Usuario", "UsuarioUltMod")
@@ -1450,6 +1545,8 @@ namespace Selectra.Migrations
                     b.Navigation("RequerimientosComoJefeDestino");
 
                     b.Navigation("RequerimientosSolicitados");
+
+                    b.Navigation("Solicitudes");
                 });
 
             modelBuilder.Entity("Selectra.Models.Postulante", b =>

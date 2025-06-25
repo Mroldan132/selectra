@@ -1,0 +1,77 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Selectra.DTOs;
+using Selectra.Services;
+using Selectra.Services.Vacaciones;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
+
+namespace Selectra.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class SolicitudVacacionesController : ControllerBase
+    {
+        private readonly ISolicitudVacacionesService _solicitudService;
+
+        public SolicitudVacacionesController(ISolicitudVacacionesService solicitudService)
+        {
+            _solicitudService = solicitudService;
+        }
+
+        [HttpGet("mis-solicitudes/{personalId}")]
+        public async Task<IActionResult> GetMisSolicitudes(int personalId)
+        {
+            var solicitudes = await _solicitudService.GetSolicitudesPorPersonalIdAsync(personalId);
+            return Ok(solicitudes);
+        }
+
+        [HttpGet("pendientes-aprobacion/{aprobadorId}")]
+        public async Task<IActionResult> GetSolicitudesPendientesParaAprobacion(int aprobadorId)
+        {
+            var solicitudes = await _solicitudService.GetSolicitudesPendientesPorAprobadorIdAsync(aprobadorId);
+            return Ok(solicitudes);
+        }
+
+        [HttpPost("{personalId}")]
+        public async Task<IActionResult> CrearSolicitud(int personalId, [FromBody] CrearSolicitudVacacionesDto solicitudDto)
+        {
+            var resultado = await _solicitudService.CrearSolicitudAsync(solicitudDto, personalId);
+
+            if (!resultado.Exitoso)
+            {
+                return BadRequest(new { message = resultado.ErrorMessage });
+            }
+
+            return Ok(new { message = "Solicitud creada exitosamente." });
+        }
+
+        [HttpPost("{id}/aprobar/{aprobadorId}")]
+        public async Task<IActionResult> AprobarSolicitud(int id, int aprobadorId)
+        {
+            var resultado = await _solicitudService.AprobarSolicitudAsync(id, aprobadorId);
+
+            if (!resultado.Exitoso)
+            {
+                return BadRequest(new { message = resultado.ErrorMessage });
+            }
+
+            return Ok(new { message = "Solicitud aprobada exitosamente." });
+        }
+
+
+
+        [HttpPost("{id}/rechazar")]
+        public async Task<IActionResult> RechazarSolicitud(int id, [FromBody] RechazarDto rechazoDto)
+        {
+            var resultado = await _solicitudService.RechazarSolicitudAsync(id, rechazoDto.AprobadorId, rechazoDto.Motivo);
+
+            if (!resultado.Exitoso)
+            {
+                return BadRequest(new { message = resultado.ErrorMessage });
+            }
+
+            return Ok(new { message = "Solicitud rechazada exitosamente." });
+        }
+    }
+}

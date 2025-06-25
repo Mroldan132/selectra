@@ -27,7 +27,9 @@ namespace Selectra.Models
         [StringLength(100)]
         public string emailCorporativo { get; set; }
 
-        public DateTime? fechaIngresoCompania { get; set; } 
+        public DateTime? fechaIngresoCompania { get; set; }
+        public DateTime? FechaUltimaAcreditacionVacaciones { get; set; }
+        public decimal DiasVacacionesDisponibles { get; set; } = 0;
 
         public bool activo { get; set; } = true; 
 
@@ -36,6 +38,7 @@ namespace Selectra.Models
         public virtual ICollection<OfertaLaboral> OfertasResponsable { get; set; } = new HashSet<OfertaLaboral>();
         [InverseProperty("JefeDestino")]
         public virtual ICollection<RequerimientoPersonal> RequerimientosComoJefeDestino { get; set; } = new HashSet<RequerimientoPersonal>();
+        public virtual ICollection<SolicitudVacaciones> Solicitudes { get; set; } = new HashSet<SolicitudVacaciones>();
 
     }
 }

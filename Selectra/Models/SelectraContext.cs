@@ -32,8 +32,24 @@ namespace Selectra.Models
         public DbSet<NivelAcademicos> NivelAcademicos { get; set; }
         public DbSet<Aspirantes> Aspirantes { get; set; }
         public DbSet<Ubigeo> Ubigeos { get; set; }
+        public DbSet<SolicitudVacaciones> SolicitudVacaciones { get; set; }
+        public DbSet<EstadoSolicitudVacaciones> EstadoSolicitudVacaciones { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Personal>()
+                .HasMany(p => p.Solicitudes)              
+                .WithOne(s => s.Personal)                 
+                .HasForeignKey(s => s.personalId)         
+                .OnDelete(DeleteBehavior.Cascade);        
 
+            modelBuilder.Entity<SolicitudVacaciones>()
+                .HasOne(s => s.Aprobador)                  
+                .WithMany()                                
+                .HasForeignKey(s => s.AprobadorId)         
+                .OnDelete(DeleteBehavior.Restrict);        
+        }
     }
 }

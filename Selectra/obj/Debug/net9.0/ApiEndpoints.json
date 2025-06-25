@@ -1,0 +1,614 @@
+[
+  {
+    "ContainingType": "Selectra.Controllers.AreasController",
+    "Method": "GetListaAreas",
+    "RelativePath": "api/Areas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "Selectra.DTOs.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.CargosController",
+    "Method": "GetListaCargos",
+    "RelativePath": "api/Cargos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.DatosPersonalesController",
+    "Method": "GetListaDepartamentos",
+    "RelativePath": "api/DatosPersonales/ListaDepartamentos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.DatosPersonalesController",
+    "Method": "GetListaDistritos",
+    "RelativePath": "api/DatosPersonales/ListaDistritos/{provinciaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "provinciaId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.DatosPersonalesController",
+    "Method": "GetListaProvincias",
+    "RelativePath": "api/DatosPersonales/ListaProvincias/{departamentoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "departamentoId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.DatosPersonalesController",
+    "Method": "GetListaTiposDocumento",
+    "RelativePath": "api/DatosPersonales/ListaTiposDocumento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NivelAcademicosController",
+    "Method": "GetListaNivelAcademicos",
+    "RelativePath": "api/NivelAcademicos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NivelAcademicosController",
+    "Method": "CrearNivelAcademicos",
+    "RelativePath": "api/NivelAcademicos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.ListaNivelAcademicosDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NivelAcademicosController",
+    "Method": "ActualizarNivelAcademicos",
+    "RelativePath": "api/NivelAcademicos",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.ListaNivelAcademicosDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NotificacionesController",
+    "Method": "GetListNotificaciones",
+    "RelativePath": "api/Notificaciones/GetListNotificaciones/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NotificacionesController",
+    "Method": "LeerNotificiacion",
+    "RelativePath": "api/Notificaciones/LeerNotificiacion/{notificacionId}/{usuarioId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificacionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.NotificacionesController",
+    "Method": "MarcarTodasLeidas",
+    "RelativePath": "api/Notificaciones/MarcarTodasLeidas/{usuarioId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "CrearOfertaLaboralRequerimiento",
+    "RelativePath": "api/OfertasLaborales/crearOfertaLaboralRequerimiento/{requerimientoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requerimientoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "DetalleOfertaLaboral",
+    "RelativePath": "api/OfertasLaborales/detalleOfertaLaboral/{ofertaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ofertaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "GenerarOfertaLaboral",
+    "RelativePath": "api/OfertasLaborales/generarOfertaLaboral",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ofertaLaboralDto",
+        "Type": "Selectra.DTOs.DetalleOfertaLaboralDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "ListaOfertasLaborales",
+    "RelativePath": "api/OfertasLaborales/listaOfertasLaborales",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OfertasLaboralesController",
+    "Method": "GetRequerimientosAprobados",
+    "RelativePath": "api/OfertasLaborales/requerimientosAprobados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.PersonalesController",
+    "Method": "DetallePersonal",
+    "RelativePath": "api/Personales/detallePersonal/{personalId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "personalId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.PersonalesController",
+    "Method": "GetListaJefesDirectos",
+    "RelativePath": "api/Personales/elegiblesComoJefe",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.PersonalesController",
+    "Method": "GetListaPersonal",
+    "RelativePath": "api/Personales/listaPersonal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "ActualizarRequerimiento",
+    "RelativePath": "api/RequerimientosPersonales/actualizar/{idRequerimiento}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRequerimiento",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.ActualizarRequerimientoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "AprobarRechazarRequerimientoPersonal",
+    "RelativePath": "api/RequerimientosPersonales/aprobarRechazar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.AprobarRechazarRequerimientoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "CrearRequerimiento",
+    "RelativePath": "api/RequerimientosPersonales/crear",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.CrearRequerimientoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetRequerimientoPorId",
+    "RelativePath": "api/RequerimientosPersonales/getRequerimientoPorId/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetListaEstadosRequerimiento",
+    "RelativePath": "api/RequerimientosPersonales/ListaEstadosRequerimientos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetListaRequerimientosAprobados",
+    "RelativePath": "api/RequerimientosPersonales/ListaRequerimientosAprobados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetListaTiposRequerimientos",
+    "RelativePath": "api/RequerimientosPersonales/ListaTiposRequerimiento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetMisSolicitudes",
+    "RelativePath": "api/RequerimientosPersonales/misSolicitudes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.RequerimientosPersonalesController",
+    "Method": "GetMisSolicitudesRecientes",
+    "RelativePath": "api/RequerimientosPersonales/misSolicitudesRecientes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.SolicitudVacacionesController",
+    "Method": "AprobarSolicitud",
+    "RelativePath": "api/SolicitudVacaciones/{id}/aprobar/{aprobadorId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "aprobadorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.SolicitudVacacionesController",
+    "Method": "RechazarSolicitud",
+    "RelativePath": "api/SolicitudVacaciones/{id}/rechazar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "rechazoDto",
+        "Type": "Selectra.DTOs.RechazarDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.SolicitudVacacionesController",
+    "Method": "CrearSolicitud",
+    "RelativePath": "api/SolicitudVacaciones/{personalId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "personalId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "solicitudDto",
+        "Type": "Selectra.DTOs.CrearSolicitudVacacionesDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.SolicitudVacacionesController",
+    "Method": "GetMisSolicitudes",
+    "RelativePath": "api/SolicitudVacaciones/mis-solicitudes/{personalId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "personalId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.SolicitudVacacionesController",
+    "Method": "GetSolicitudesPendientesParaAprobacion",
+    "RelativePath": "api/SolicitudVacaciones/pendientes-aprobacion/{aprobadorId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aprobadorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "GetUsuarioPorId",
+    "RelativePath": "api/Usuarios/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "actualizarPersonal",
+    "RelativePath": "api/Usuarios/actualizarPersonal/{personalId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "personalDto",
+        "Type": "Selectra.DTOs.ActualizarPersonalDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "personalId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "GetListaRoles",
+    "RelativePath": "api/Usuarios/listaRoles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "RegistrarAdministrador",
+    "RelativePath": "api/Usuarios/registrarAdministrador",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registroDto",
+        "Type": "Selectra.DTOs.RegistrarAdministradorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "RegistrarAspirante",
+    "RelativePath": "api/Usuarios/registrarAspirante",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registroDto",
+        "Type": "Selectra.DTOs.RegistrarAspiranteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "RegistrarPersonal",
+    "RelativePath": "api/Usuarios/registrarPersonal",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registroDto",
+        "Type": "Selectra.DTOs.RegistrarPersonalDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.UsuariosController",
+    "Method": "VerificarExisteUsuario",
+    "RelativePath": "api/Usuarios/verificar-existencia/{codUsuario}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codUsuario",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

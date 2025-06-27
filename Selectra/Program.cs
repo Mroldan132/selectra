@@ -12,6 +12,7 @@ using Selectra.Services.Notificaciones;
 using Selectra.Services.OfertasLaborales;
 using Selectra.Services.Personales;
 using Selectra.Services.Requerimiento;
+using Selectra.Services.TipoDocumento;
 using Selectra.Services.Usuarios;
 using System.Text;
 
@@ -30,6 +31,7 @@ builder.Services.AddScoped<INotificacionesServices, NotificacionesServices>();
 builder.Services.AddScoped<INivelesAcademicosService, NivelesAcademicosService>();
 builder.Services.AddScoped<IDatosPersonalesService, DatosPersonalesServices>();
 builder.Services.AddScoped<IOfertasLaboralesServices, OfertasLaboralesServices>();
+builder.Services.AddScoped<ITiposDocumentosService, TiposDocumentosService>();
 
 //Conexion a la base de datos
 builder.Services.AddDbContext<SelectraContext>(options =>

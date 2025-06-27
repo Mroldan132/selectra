@@ -16,8 +16,8 @@ namespace Selectra.Services.DatosPersonales
             return await _context.TiposDocumentos
                 .Select(td => new ListaTiposDocumentoDto
                 {
-                    Id = td.tipoDocumentoId,
-                    Nombre = td.nombreTipoDocumento
+                    tipoDocumentoId = td.tipoDocumentoId,
+                    nombreTipoDocumento = td.nombreTipoDocumento
                 })
                 .ToListAsync();
         }

@@ -83,12 +83,13 @@ namespace Selectra.Services.OfertasLaborales
             };
         }
 
-        public async Task<bool> GenerarOfertaLaborarAsync(DetalleOfertaLaboralDto ofertaLaboralDto,int usuarioQueRegistraId)
+        public async Task<bool> GenerarOfertaLaborarAsync(DetalleOfertaLaboralDto ofertaLaboralDto, int usuarioQueRegistraId)
         {
             var estadoOfertaLaboral = await _context.EstadosOfertaLaborales
                 .FirstOrDefaultAsync(o => o.codigoEstado.Equals("PEN"));
 
-            if(estadoOfertaLaboral == null) {
+            if (estadoOfertaLaboral == null)
+            {
                 throw new Exception("Estados de la oferta laboral no configurados.");
             }
 
@@ -116,8 +117,36 @@ namespace Selectra.Services.OfertasLaborales
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task<bool> ActualizarOfertaLaborarAsync(DetalleOfertaLaboralDto ofertaLaboralDto, int usuarioQueRegistraId)
+        {
 
-        public async Task<IEnumerable<ListaOfertasLaboralesDto>> GetListOfertasLaboralesAsync() => 
+            var ofertaLaboral = await _context.OfertasLaborales
+                .FirstOrDefaultAsync(i => i.ofertaId == ofertaLaboralDto.ofertaId);
+
+            if (ofertaLaboral == null)
+                throw new Exception("Oferta laboral no encontrada.");
+
+            ofertaLaboral.titulo = ofertaLaboralDto.titulo;
+            ofertaLaboral.descripcion = ofertaLaboralDto.descripcion;
+            ofertaLaboral.funciones = ofertaLaboralDto.funciones;
+            ofertaLaboral.beneficios = ofertaLaboralDto.beneficios;
+            ofertaLaboral.competencias = ofertaLaboralDto.competencias;
+            ofertaLaboral.sueldoOfrecido = ofertaLaboralDto.sueldoOfrecido;
+            ofertaLaboral.areaId = ofertaLaboralDto.areaId;
+            ofertaLaboral.cargoId = ofertaLaboralDto.cargoId;
+            ofertaLaboral.responsableId = ofertaLaboralDto.responsable;
+            ofertaLaboral.direccionTrabajo = ofertaLaboralDto.direccionTrabajo;
+            ofertaLaboral.referenciaUbicacion = ofertaLaboralDto.referenciaUbicacion;
+            ofertaLaboral.fechaEstimadaIngreso = ofertaLaboralDto.fechaEstimadaIngreso;
+            ofertaLaboral.fechaUltMod = DateTime.Now;
+            ofertaLaboral.usuarioUltModId = usuarioQueRegistraId;
+
+            _context.OfertasLaborales.Update(ofertaLaboral);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<IEnumerable<ListaOfertasLaboralesDto>> GetListOfertasLaboralesAsync() =>
            await _context.OfertasLaborales
                 .Include(r => r.Area)
                 .Include(r => r.EstadoOfertaLaboral)
@@ -132,7 +161,8 @@ namespace Selectra.Services.OfertasLaborales
                 })
                 .ToListAsync();
 
-        public async Task<DetalleOfertaLaboralDto> DetalleOfertaLaboralRequerimientoAsync(int ofertaLaboralId) {
+        public async Task<DetalleOfertaLaboralDto> DetalleOfertaLaboralRequerimientoAsync(int ofertaLaboralId)
+        {
             var ofertaLaboral = await _context.OfertasLaborales
                 .FirstOrDefaultAsync(i => i.ofertaId == ofertaLaboralId);
 
@@ -159,6 +189,87 @@ namespace Selectra.Services.OfertasLaborales
                 fechaCierre = ofertaLaboral.fechaCierre,
                 fechaEstimadaIngreso = ofertaLaboral.fechaEstimadaIngreso
             };
+        }
+
+        public async Task<List<DetalleOfertaLaboralPublicadasDto>> ListaOfertasPublicadas(int usuarioId)
+        {
+            var usuarioPostulante = await _context.Usuarios
+                .FirstOrDefaultAsync(i => i.usuarioId == usuarioId);
+
+            if (usuarioPostulante == null)
+                throw new Exception("Error Desconocido.");
+
+            var aspirante = await _context.Aspirantes
+                .Include(r => r.DatosPersonales)
+                .FirstOrDefaultAsync(r => r.DatosPersonales.usuarioId == usuarioPostulante.usuarioId);
+
+            if (aspirante == null)
+                throw new Exception("Error Desconocido.");
+
+            var estadoPublicado = await _context.EstadosOfertaLaborales
+                .Where(i => i.esPublica && i.estadoOfertaLaboralId == 2)
+                .Select(i => i.estadoOfertaLaboralId)
+                .FirstOrDefaultAsync();
+
+            if (estadoPublicado == 0)
+                throw new Exception("Estado no configurado.");
+
+            var ofertasPostuladasIds = await _context.Postulantes
+                .Where(i => i.aspiranteId == aspirante.aspiranteId)
+                .Select(i => i.ofertaId)
+                .ToListAsync();
+
+            return await _context.OfertasLaborales
+                .Include(r => r.Responsable)
+                .Where(i => i.estadoOfertaLaboralId == estadoPublicado && !ofertasPostuladasIds.Contains(i.ofertaId))
+                .Select(r => new DetalleOfertaLaboralPublicadasDto
+                {
+                    ofertaId = r.ofertaId,
+                    titulo = r.titulo,
+                    publicadoPor = $"{r.Responsable.DatosPersonales.apellidoPaterno} {r.Responsable.DatosPersonales.nombres}",
+                    fechaPublicacion = r.fechaPublicacion.HasValue
+                        ? r.fechaPublicacion.Value.ToString("dd/MM/yyyy")
+                        : string.Empty,
+                    ubicacion = r.direccionTrabajo,
+                    sueldo = $"S/. {r.sueldoOfrecido.ToString()}",
+                    descripcionCompleta = r.descripcion,
+                    funciones = r.funciones.Split(
+                                new[] { "\r\n", "\r", "\n" },
+                                StringSplitOptions.RemoveEmptyEntries
+                            ),
+                    beneficios = r.beneficios.Split(
+                                new[] { "\r\n", "\r", "\n" },
+                                StringSplitOptions.RemoveEmptyEntries
+                            ),
+                    competencias = r.competencias.Split(
+                                new[] { "\r\n", "\r", "\n" },
+                                StringSplitOptions.RemoveEmptyEntries
+                            ),
+                })
+                .ToListAsync();
+        }
+
+
+        public async Task<bool> PasarSiguienteEstadoOferta(int ofertaLaboralId)
+        {
+
+            var ofertaLaboral = await _context.OfertasLaborales
+                .FirstOrDefaultAsync(i => i.ofertaId == ofertaLaboralId);
+
+            if (ofertaLaboral == null)
+                throw new Exception("Oferta laboral no encontrada.");
+
+            var siguieteEstado = await _context.EstadosOfertaLaborales
+                .FirstOrDefaultAsync(i => i.estadoOfertaLaboralId == ofertaLaboral.estadoOfertaLaboralId + 1);
+
+            if (siguieteEstado == null)
+                throw new Exception("Ya no existen estados despues de este.");
+
+            ofertaLaboral.estadoOfertaLaboralId = siguieteEstado.estadoOfertaLaboralId;
+
+            _context.OfertasLaborales.Update(ofertaLaboral);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

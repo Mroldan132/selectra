@@ -11,6 +11,7 @@ using Selectra.Services.NivelAcademicos;
 using Selectra.Services.Notificaciones;
 using Selectra.Services.OfertasLaborales;
 using Selectra.Services.Personales;
+using Selectra.Services.Postulantes;
 using Selectra.Services.Requerimiento;
 using Selectra.Services.Usuarios;
 using Selectra.Services.Vacaciones;
@@ -25,13 +26,14 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IRequerimientoPersonalService, RequerimientoPersonalService>();
 builder.Services.AddScoped<IAreaService, AreaService>();
-builder.Services.AddScoped<ICargosService,CargosServices>();
+builder.Services.AddScoped<ICargosService, CargosService>();
 builder.Services.AddScoped<IPersonalesServices, PersonalesServices>();
 builder.Services.AddScoped<INotificacionesServices, NotificacionesServices>();
 builder.Services.AddScoped<INivelAcademicosService, NivelAcademicosService>();
 builder.Services.AddScoped<IDatosPersonalesService, DatosPersonalesServices>();
 builder.Services.AddScoped<IOfertasLaboralesServices, OfertasLaboralesServices>();
 builder.Services.AddScoped<ISolicitudVacacionesService, SolicitudVacacionesService>();
+builder.Services.AddScoped<IPostulanteService, PostulanteService>();
 
 //Conexion a la base de datos
 builder.Services.AddDbContext<SelectraContext>(options =>

@@ -4,6 +4,8 @@ namespace Selectra.Services.Cargos
 {
     public interface ICargosService
     {
-        public Task<IEnumerable<ListaCargosDto>> GetListaCargosAsync();
+        Task<IEnumerable<ListaCargosDto>> GetListaCargosAsync();
+        Task<bool> GenerarCargoAsync(DetalleCargoDto cargoDto);
+        Task<bool> ActualizarCargoAsync(int idCargo, ActualizarCargoDto cargoDto);
     }
 }

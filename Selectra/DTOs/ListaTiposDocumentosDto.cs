@@ -1,12 +1,8 @@
 ﻿namespace Selectra.DTOs
 {
-    public class ListaTiposDocumentoDto
+    public class ListaTiposDocumentosDto
     {
-
         public int tipoDocumentoId { get; set; }
         public string nombreTipoDocumento { get; set; }
-
-        //public int Id { get; set; }
-        //public string Nombre { get; set; }
     }
 }

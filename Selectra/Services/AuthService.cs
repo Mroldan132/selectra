@@ -51,7 +51,7 @@ namespace Selectra.Services
                     new Claim(ClaimTypes.Role, usuario.Rol?.nombreRol ?? string.Empty) 
                                                                                        
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(1), 
+                Expires = DateTime.UtcNow.AddMinutes(10), 
                 Issuer = issuer,
                 Audience = audience,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

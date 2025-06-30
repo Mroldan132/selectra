@@ -17,22 +17,6 @@ namespace Selectra.Models
         public int aspiranteId { get; set; }
         public virtual Aspirantes Aspirantes { get; set; }
         [Required]
-        [StringLength(300)]
-        public string nombreCompleto { get; set; }
-
-        [StringLength(100)]
-        public string email { get; set; }
-
-        [StringLength(50)]
-        public string telefono { get; set; }
-
-        [StringLength(50)]
-        public string tipoDocumento { get; set; }
-
-        [StringLength(20)]
-        public string numeroDocumento { get; set; } 
-
-        [Required]
         public DateTime fechaPostulacion { get; set; }
 
         [ForeignKey("EstadoPostulante")]

@@ -4,6 +4,7 @@ using Selectra.DTOs;
 using Selectra.Services;
 using Selectra.Services.Vacaciones;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Selectra.Controllers
@@ -19,10 +20,17 @@ namespace Selectra.Controllers
             _solicitudService = solicitudService;
         }
 
-        [HttpGet("mis-solicitudes/{personalId}")]
-        public async Task<IActionResult> GetMisSolicitudes(int personalId)
+        [HttpGet("mis-solicitudes")]
+        public async Task<IActionResult> GetMisSolicitudes()
         {
-            var solicitudes = await _solicitudService.GetSolicitudesPorPersonalIdAsync(personalId);
+
+            var usuarioIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(usuarioIdStr, out int usuarioId))
+            {
+                return Forbid("No se pudo identificar al usuario.");
+            }
+
+            var solicitudes = await _solicitudService.GetSolicitudesPorPersonalIdAsync(int.Parse(usuarioIdStr));
             return Ok(solicitudes);
         }
 

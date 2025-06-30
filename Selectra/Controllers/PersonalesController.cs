@@ -47,8 +47,14 @@ namespace Selectra.Controllers
 
             return Ok(personal);
         }
-
-
+        [HttpGet("organigrama")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> ListaPersonalOrganigrama()
+        {
+            var organigrama = await _personalesServices.ListaPersonalOrganigrama();
+            return Ok(organigrama);
+        }
+        
 
     }
 }

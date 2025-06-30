@@ -5,7 +5,7 @@ namespace Selectra.Services.Vacaciones
     public interface ISolicitudVacacionesService
     {
 
-        Task<IEnumerable<SolicitudVacacionesDto>> GetSolicitudesPorPersonalIdAsync(int personalId);
+        Task<IEnumerable<SolicitudVacacionesDto>> GetSolicitudesPorPersonalIdAsync(int usuarioId);
         Task<IEnumerable<SolicitudVacacionesDto>> GetSolicitudesPendientesPorAprobadorIdAsync(int aprobadorId);
         Task<(bool Exitoso, string ErrorMessage)> CrearSolicitudAsync(CrearSolicitudVacacionesDto solicitudDto, int personalId);
         Task<(bool Exitoso, string ErrorMessage)> AprobarSolicitudAsync(int solicitudId, int aprobadorId);

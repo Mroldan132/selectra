@@ -15,5 +15,6 @@ namespace Selectra.Services.OfertasLaborales
         Task<List<DetalleOfertaLaboralPublicadasDto>> ListaOfertasPublicadas(int usuarioId);
 
         Task<bool> PasarSiguienteEstadoOferta(int ofertaLaboralId);
+
     }
 }

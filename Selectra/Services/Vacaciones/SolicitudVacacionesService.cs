@@ -15,10 +15,14 @@ public class SolicitudVacacionesService : ISolicitudVacacionesService
     {
         _context = context;
     }
-    public async Task<IEnumerable<SolicitudVacacionesDto>> GetSolicitudesPorPersonalIdAsync(int personalId)
+    public async Task<IEnumerable<SolicitudVacacionesDto>> GetSolicitudesPorPersonalIdAsync(int usuarioId)
     {
+        var personal = await _context.Personales
+            .Include(i => i.DatosPersonales)
+            .FirstOrDefaultAsync(i => i.DatosPersonales.usuarioId == usuarioId);
+
         return await _context.SolicitudVacaciones
-            .Where(s => s.personalId == personalId)
+            .Where(s => s.personalId == personal.personalId)
             .Include(s => s.Estado)
             .OrderByDescending(s => s.FechaCreacion)
             .Select(s => new SolicitudVacacionesDto

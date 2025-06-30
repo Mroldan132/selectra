@@ -7,6 +7,8 @@
         public string area { get; set; }
         public decimal? sueldo { get; set; }
         public string estadoOferta { get; set; }
+        public int countPostulantes { get; set; }
+        public string descripcion { get; set; }
         public DateTime fechaCreacion { get; set; }
     }
 }

@@ -150,14 +150,18 @@ namespace Selectra.Services.OfertasLaborales
            await _context.OfertasLaborales
                 .Include(r => r.Area)
                 .Include(r => r.EstadoOfertaLaboral)
+                .Include(r => r.Postulantes)
                 .Select(r => new ListaOfertasLaboralesDto
                 {
                     ofertaLaboralId = r.ofertaId,
                     titulo = r.titulo,
                     area = r.Area.nombreArea,
                     sueldo = r.sueldoOfrecido,
+                    countPostulantes = r.Postulantes.Count(),
+                    descripcion = r.descripcion,
                     estadoOferta = r.EstadoOfertaLaboral.nombreEstado,
-                    fechaCreacion = r.fechaCreacion
+                    fechaCreacion = r.fechaCreacion,
+
                 })
                 .ToListAsync();
 
@@ -252,23 +256,47 @@ namespace Selectra.Services.OfertasLaborales
 
         public async Task<bool> PasarSiguienteEstadoOferta(int ofertaLaboralId)
         {
-
             var ofertaLaboral = await _context.OfertasLaborales
-                .FirstOrDefaultAsync(i => i.ofertaId == ofertaLaboralId);
+                .Include(o => o.EstadoOfertaLaboral) 
+                .FirstOrDefaultAsync(o => o.ofertaId == ofertaLaboralId);
 
             if (ofertaLaboral == null)
+            {
                 throw new Exception("Oferta laboral no encontrada.");
+            }
 
-            var siguieteEstado = await _context.EstadosOfertaLaborales
-                .FirstOrDefaultAsync(i => i.estadoOfertaLaboralId == ofertaLaboral.estadoOfertaLaboralId + 1);
+            int ordenActual = ofertaLaboral.EstadoOfertaLaboral.estadoOfertaLaboralId;
+            var siguienteEstado = await _context.EstadosOfertaLaborales
+                .OrderBy(e => e.estadoOfertaLaboralId)
+                .FirstOrDefaultAsync(e => e.estadoOfertaLaboralId > ordenActual);
 
-            if (siguieteEstado == null)
-                throw new Exception("Ya no existen estados despues de este.");
+            if (siguienteEstado == null)
+            {
+                throw new Exception("La oferta ya se encuentra en su estado final.");
+            }
 
-            ofertaLaboral.estadoOfertaLaboralId = siguieteEstado.estadoOfertaLaboralId;
+            ofertaLaboral.estadoOfertaLaboralId = siguienteEstado.estadoOfertaLaboralId;
 
-            _context.OfertasLaborales.Update(ofertaLaboral);
+            if (siguienteEstado.codigoEstado == "SEL")
+            {
+                var postulantes = await _context.Postulantes
+                    .Where(p => p.ofertaId == ofertaLaboralId)
+                    .ToListAsync();
+
+                var estadoPostulanteSeleccion = await _context.EstadosPostulantes
+                                                   .FirstOrDefaultAsync(ep => ep.codigoEstado == "SEL");
+
+                if (estadoPostulanteSeleccion != null)
+                {
+                    foreach (var postulante in postulantes)
+                    {
+                        postulante.estadoPostulanteId = estadoPostulanteSeleccion.estadoPostulanteId;
+                    }
+                }
+            }
+
             await _context.SaveChangesAsync();
+
             return true;
         }
     }

@@ -78,5 +78,20 @@ namespace Selectra.Services.Personales
 
             return personal;
         }
+
+        public async Task<List<OrganigramaEmpresaDto>> ListaPersonalOrganigrama() =>
+            await _context.Personales
+            .Include(i => i.DatosPersonales)
+            .Include(i => i.Cargo)
+            .Select(i => new OrganigramaEmpresaDto
+            {
+                id = i.personalId,
+                nombre = $"{i.DatosPersonales.apellidoPaterno} {i.DatosPersonales.nombres}",
+                cargo = i.Cargo.nombreCargo,
+                jefeDirectoId = i.jefeDirectoId
+            })
+            .ToListAsync();
+            
+
     }
 }

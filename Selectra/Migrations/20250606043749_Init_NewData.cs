@@ -139,7 +139,7 @@ namespace Selectra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TipoPreguntasFiltro",
+                name: "TipoPreguntasFiltros",
                 columns: table => new
                 {
                     tipoPreguntaId = table.Column<int>(type: "int", nullable: false)
@@ -148,7 +148,7 @@ namespace Selectra.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TipoPreguntasFiltro", x => x.tipoPreguntaId);
+                    table.PrimaryKey("PK_TipoPreguntasFiltros", x => x.tipoPreguntaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -660,9 +660,9 @@ namespace Selectra.Migrations
                         principalColumn: "ofertaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PreguntasFiltros_TipoPreguntasFiltro_tipoPreguntaId",
+                        name: "FK_PreguntasFiltros_TipoPreguntasFiltros_tipoPreguntaId",
                         column: x => x.tipoPreguntaId,
-                        principalTable: "TipoPreguntasFiltro",
+                        principalTable: "TipoPreguntasFiltros",
                         principalColumn: "tipoPreguntaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -999,7 +999,7 @@ namespace Selectra.Migrations
                 name: "OfertasLaborales");
 
             migrationBuilder.DropTable(
-                name: "TipoPreguntasFiltro");
+                name: "TipoPreguntasFiltros");
 
             migrationBuilder.DropTable(
                 name: "NivelAcademicos");

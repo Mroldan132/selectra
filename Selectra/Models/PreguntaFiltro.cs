@@ -9,13 +9,9 @@ namespace Selectra.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int preguntaFiltroId { get; set; }
 
-        [ForeignKey("OfertaLaboral")]
-        public int ofertaId { get; set; }
-        public virtual OfertaLaboral OfertaLaboral { get; set; }
-
-        [ForeignKey("TipoPreguntasFiltro")]
+        [ForeignKey("TipoPreguntasFiltros")]
         public int tipoPreguntaId { get; set; }
-        public virtual TipoPreguntasFiltro TipoPreguntasFiltro { get; set; }
+        public virtual TipoPreguntasFiltros TipoPreguntasFiltros { get; set; }
 
         [Required]
         public string textoPregunta { get; set; }

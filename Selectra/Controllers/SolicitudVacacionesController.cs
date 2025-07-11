@@ -41,10 +41,15 @@ namespace Selectra.Controllers
             return Ok(solicitudes);
         }
 
-        [HttpPost("{personalId}")]
-        public async Task<IActionResult> CrearSolicitud(int personalId, [FromBody] CrearSolicitudVacacionesDto solicitudDto)
+        [HttpPost("crearSolicitud")]
+        public async Task<IActionResult> CrearSolicitud([FromBody] CrearSolicitudVacacionesDto solicitudDto)
         {
-            var resultado = await _solicitudService.CrearSolicitudAsync(solicitudDto, personalId);
+            var usuarioIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(usuarioIdStr, out int usuarioId))
+            {
+                return Forbid("No se pudo identificar al usuario.");
+            }
+            var resultado = await _solicitudService.CrearSolicitudAsync(solicitudDto, usuarioId);
 
             if (!resultado.Exitoso)
             {

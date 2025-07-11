@@ -987,7 +987,7 @@ namespace Selectra.Migrations
                     b.ToTable("TiposDocumentos");
                 });
 
-            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltro", b =>
+            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltros", b =>
                 {
                     b.Property<int>("tipoPreguntaId")
                         .ValueGeneratedOnAdd()
@@ -1002,7 +1002,7 @@ namespace Selectra.Migrations
 
                     b.HasKey("tipoPreguntaId");
 
-                    b.ToTable("TipoPreguntasFiltro");
+                    b.ToTable("TipoPreguntasFiltros");
                 });
 
             modelBuilder.Entity("Selectra.Models.TiposRequerimiento", b =>
@@ -1372,7 +1372,7 @@ namespace Selectra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Selectra.Models.TipoPreguntasFiltro", "TipoPreguntasFiltro")
+                    b.HasOne("Selectra.Models.TipoPreguntasFiltros", "TipoPreguntasFiltros")
                         .WithMany("PreguntasFiltro")
                         .HasForeignKey("tipoPreguntaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1384,7 +1384,7 @@ namespace Selectra.Migrations
 
                     b.Navigation("OfertaLaboral");
 
-                    b.Navigation("TipoPreguntasFiltro");
+                    b.Navigation("TipoPreguntasFiltros");
 
                     b.Navigation("UsuarioUltMod");
                 });
@@ -1568,7 +1568,7 @@ namespace Selectra.Migrations
                     b.Navigation("OfertasLaborales");
                 });
 
-            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltro", b =>
+            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltros", b =>
                 {
                     b.Navigation("PreguntasFiltro");
                 });

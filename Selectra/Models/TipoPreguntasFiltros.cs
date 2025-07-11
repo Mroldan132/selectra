@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Selectra.Models
 {
-    public class TipoPreguntasFiltro
+    public class TipoPreguntasFiltros
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

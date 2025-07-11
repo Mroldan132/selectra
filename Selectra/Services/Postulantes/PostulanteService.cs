@@ -52,43 +52,47 @@ namespace Selectra.Services.Postulantes
             return true; 
         }
 
-        public async Task<List<MisOfertasLaboralesDto>> ListaMisOfertasLaborales(int usuarioId)
+        public async Task<List<DetalleMisOfertasLaborales>> ListaMisOfertasLaborales(int usuarioId)
         {
-            // Paso 1: Buscar el aspirante relacionado al usuario
             var aspirante = await _context.Aspirantes
                 .Include(a => a.DatosPersonales)
                 .FirstOrDefaultAsync(a => a.DatosPersonales.usuarioId == usuarioId);
 
             if (aspirante == null)
-                return new List<MisOfertasLaboralesDto>();
+                return new List<DetalleMisOfertasLaborales>();
 
-            // Paso 2: Buscar los postulantes (inscripciones) de ese aspirante
             var postulaciones = await _context.Postulantes
                 .Where(p => p.aspiranteId == aspirante.aspiranteId)
                 .ToListAsync();
 
             if (!postulaciones.Any())
-                return new List<MisOfertasLaboralesDto>();
+                return new List<DetalleMisOfertasLaborales>();
 
-            // Paso 3: Obtener las ofertas laborales y el estado de la postulación
             var ofertasIds = postulaciones.Select(p => p.ofertaId).ToList();
 
             var ofertas = await _context.OfertasLaborales
+                .Include(o => o.EstadoOfertaLaboral)
                 .Where(o => ofertasIds.Contains(o.ofertaId))
                 .ToListAsync();
 
             var estadosPostulantes = await _context.EstadosPostulantes
                 .ToDictionaryAsync(e => e.estadoPostulanteId, e => e);
 
-            // Paso 4: Construir el DTO de respuesta
             var resultado = postulaciones
                 .Join(ofertas, p => p.ofertaId, o => o.ofertaId, (p, o) => new { p, o })
-                .Select(x => new MisOfertasLaboralesDto
+                .Select(x => new DetalleMisOfertasLaborales
                 {
-                    titulo = x.o.descripcion,
+                    id = x.p.postulanteId,
+                    fecha = x.p.fechaPostulacion.ToString("dd/MM/yyyy"),
                     estado = estadosPostulantes.ContainsKey(x.p.estadoPostulanteId)
-                        ? estadosPostulantes[x.p.estadoPostulanteId].codigoEstado
-                        : "Desconocido"
+                            ? estadosPostulantes[x.p.estadoPostulanteId].nombreEstado
+                            : "Desconocido",
+                    oferta = new MisOfertasLaboralesDto
+                    {
+                        idOfertta = x.o.ofertaId,
+                        titulo = x.o.titulo,
+                        estado = x.o.EstadoOfertaLaboral.nombreEstado
+                    }
                 })
                 .ToList();
 

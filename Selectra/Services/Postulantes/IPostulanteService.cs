@@ -6,7 +6,8 @@ namespace Selectra.Services.Postulantes
     {
         Task<bool> PostularOfertaLaboral(int ofertaLaboralId, int aspiranteId);
 
-        Task<List<MisOfertasLaboralesDto>> ListaMisOfertasLaborales(int usuarioId);
+        Task<List<DetalleMisOfertasLaborales>> ListaMisOfertasLaborales(int usuarioId);
+
 
     }
 }

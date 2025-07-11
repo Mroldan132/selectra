@@ -60,9 +60,12 @@ public class SolicitudVacacionesService : ISolicitudVacacionesService
             .ToListAsync();
     }
 
-    public async Task<(bool Exitoso, string ErrorMessage)> CrearSolicitudAsync(CrearSolicitudVacacionesDto solicitudDto, int personalId)
+    public async Task<(bool Exitoso, string ErrorMessage)> CrearSolicitudAsync(CrearSolicitudVacacionesDto solicitudDto, int usuarioId)
     {
-        var empleado = await _context.Personales.FindAsync(personalId);
+        var empleado = await _context.Personales
+            .Include(i => i.DatosPersonales)
+            .FirstOrDefaultAsync(i => i.DatosPersonales.usuarioId == usuarioId);
+
         if (empleado == null)
         {
             return (false, "El empleado no fue encontrado.");
@@ -87,10 +90,11 @@ public class SolicitudVacacionesService : ISolicitudVacacionesService
 
         var nuevaSolicitud = new SolicitudVacaciones
         {
-            personalId = personalId,
+            personalId = empleado.personalId,
             FechaInicio = solicitudDto.FechaInicio,
             FechaFin = solicitudDto.FechaFin,
             ComentariosEmpleado = solicitudDto.ComentariosEmpleado,
+            ComentariosAprobador = "",
             FechaCreacion = DateTime.Now,
             estadoId = ESTADO_PENDIENTE,
             AprobadorId = empleado.jefeDirectoId
@@ -99,7 +103,7 @@ public class SolicitudVacacionesService : ISolicitudVacacionesService
         _context.SolicitudVacaciones.Add(nuevaSolicitud);
         await _context.SaveChangesAsync();
 
-        return (true, null);
+        return (    true, (string?)null);
     }
 
     public async Task<(bool Exitoso, string ErrorMessage)> AprobarSolicitudAsync(int solicitudId, int aprobadorId)

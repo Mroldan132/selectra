@@ -9,6 +9,10 @@ namespace Selectra.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int respuestaPostulanteId { get; set; }
 
+        [ForeignKey("OfertaLaboral")]
+        public int ofertaId { get; set; }
+        public virtual OfertaLaboral OfertaLaboral { get; set; }
+
         [ForeignKey("Postulante")]
         public int postulanteId { get; set; }
         public virtual Postulante Postulante { get; set; }

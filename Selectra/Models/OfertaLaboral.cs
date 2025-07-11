@@ -55,9 +55,11 @@ namespace Selectra.Models
         [ForeignKey("UsuarioUltMod")]
         public int? usuarioUltModId { get; set; }
         public virtual Usuario UsuarioUltMod { get; set; }
-
-        // --- Relaciones Inversas ---
-        public virtual ICollection<PreguntaFiltro> PreguntasFiltro { get; set; } = new HashSet<PreguntaFiltro>();
+        
+        [ForeignKey("TipoPreguntasFiltros")]
+        public int? tipoPreguntaFiltroId { get; set; }
+        public virtual TipoPreguntasFiltros TipoPreguntasFiltros { get; set; }
+       
         public virtual ICollection<Postulante> Postulantes { get; set; } = new HashSet<Postulante>();
     }
 }

@@ -12,8 +12,8 @@ using Selectra.Models;
 namespace Selectra.Migrations
 {
     [DbContext(typeof(SelectraContext))]
-    [Migration("20250625210101_AgregarCampo")]
-    partial class AgregarCampo
+    [Migration("20250701000209_Final")]
+    partial class Final
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -680,11 +680,6 @@ namespace Selectra.Migrations
                     b.Property<int>("aspiranteId")
                         .HasColumnType("int");
 
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<int>("estadoPostulanteId")
                         .HasColumnType("int");
 
@@ -702,28 +697,8 @@ namespace Selectra.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("nombreCompleto")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("numeroDocumento")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.Property<int>("ofertaId")
                         .HasColumnType("int");
-
-                    b.Property<string>("telefono")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("tipoDocumento")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("usuarioUltModId")
                         .HasColumnType("int");

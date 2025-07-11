@@ -514,6 +514,9 @@ namespace Selectra.Migrations
                     b.Property<decimal?>("sueldoOfrecido")
                         .HasColumnType("decimal(18, 2)");
 
+                    b.Property<int?>("tipoPreguntaFiltroId")
+                        .HasColumnType("int");
+
                     b.Property<string>("titulo")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -533,6 +536,8 @@ namespace Selectra.Migrations
                     b.HasIndex("requerimientoId");
 
                     b.HasIndex("responsableId");
+
+                    b.HasIndex("tipoPreguntaFiltroId");
 
                     b.HasIndex("usuarioUltModId");
 
@@ -573,7 +578,7 @@ namespace Selectra.Migrations
 
                     b.HasIndex("usuarioUltModId");
 
-                    b.ToTable("OpcionPreguntaFiltro");
+                    b.ToTable("OpcionesPreguntasFiltros");
                 });
 
             modelBuilder.Entity("Selectra.Models.OrdenAprobacion", b =>
@@ -730,9 +735,6 @@ namespace Selectra.Migrations
                     b.Property<bool>("obligatoria")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ofertaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("textoPregunta")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -744,8 +746,6 @@ namespace Selectra.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("preguntaFiltroId");
-
-                    b.HasIndex("ofertaId");
 
                     b.HasIndex("tipoPreguntaId");
 
@@ -840,6 +840,9 @@ namespace Selectra.Migrations
                     b.Property<DateTime>("fechaUltMod")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ofertaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("postulanteId")
                         .HasColumnType("int");
 
@@ -854,6 +857,8 @@ namespace Selectra.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("respuestaPostulanteId");
+
+                    b.HasIndex("ofertaId");
 
                     b.HasIndex("postulanteId");
 
@@ -962,7 +967,7 @@ namespace Selectra.Migrations
                     b.ToTable("TiposDocumentos");
                 });
 
-            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltro", b =>
+            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltros", b =>
                 {
                     b.Property<int>("tipoPreguntaId")
                         .ValueGeneratedOnAdd()
@@ -977,7 +982,7 @@ namespace Selectra.Migrations
 
                     b.HasKey("tipoPreguntaId");
 
-                    b.ToTable("TipoPreguntasFiltro");
+                    b.ToTable("TipoPreguntasFiltros");
                 });
 
             modelBuilder.Entity("Selectra.Models.TiposRequerimiento", b =>
@@ -1220,6 +1225,10 @@ namespace Selectra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Selectra.Models.TipoPreguntasFiltros", "TipoPreguntasFiltros")
+                        .WithMany()
+                        .HasForeignKey("tipoPreguntaFiltroId");
+
                     b.HasOne("Selectra.Models.Usuario", "UsuarioUltMod")
                         .WithMany()
                         .HasForeignKey("usuarioUltModId");
@@ -1233,6 +1242,8 @@ namespace Selectra.Migrations
                     b.Navigation("RequerimientoPersonal");
 
                     b.Navigation("Responsable");
+
+                    b.Navigation("TipoPreguntasFiltros");
 
                     b.Navigation("UsuarioUltMod");
                 });
@@ -1341,13 +1352,7 @@ namespace Selectra.Migrations
 
             modelBuilder.Entity("Selectra.Models.PreguntaFiltro", b =>
                 {
-                    b.HasOne("Selectra.Models.OfertaLaboral", "OfertaLaboral")
-                        .WithMany("PreguntasFiltro")
-                        .HasForeignKey("ofertaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Selectra.Models.TipoPreguntasFiltro", "TipoPreguntasFiltro")
+                    b.HasOne("Selectra.Models.TipoPreguntasFiltros", "TipoPreguntasFiltros")
                         .WithMany("PreguntasFiltro")
                         .HasForeignKey("tipoPreguntaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1357,9 +1362,7 @@ namespace Selectra.Migrations
                         .WithMany()
                         .HasForeignKey("usuarioUltModId");
 
-                    b.Navigation("OfertaLaboral");
-
-                    b.Navigation("TipoPreguntasFiltro");
+                    b.Navigation("TipoPreguntasFiltros");
 
                     b.Navigation("UsuarioUltMod");
                 });
@@ -1421,6 +1424,12 @@ namespace Selectra.Migrations
 
             modelBuilder.Entity("Selectra.Models.RespuestaPostulante", b =>
                 {
+                    b.HasOne("Selectra.Models.OfertaLaboral", "OfertaLaboral")
+                        .WithMany()
+                        .HasForeignKey("ofertaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Selectra.Models.Postulante", "Postulante")
                         .WithMany("RespuestasPostulante")
                         .HasForeignKey("postulanteId")
@@ -1436,6 +1445,8 @@ namespace Selectra.Migrations
                     b.HasOne("Selectra.Models.Usuario", "UsuarioUltMod")
                         .WithMany()
                         .HasForeignKey("usuarioUltModId");
+
+                    b.Navigation("OfertaLaboral");
 
                     b.Navigation("Postulante");
 
@@ -1502,8 +1513,6 @@ namespace Selectra.Migrations
             modelBuilder.Entity("Selectra.Models.OfertaLaboral", b =>
                 {
                     b.Navigation("Postulantes");
-
-                    b.Navigation("PreguntasFiltro");
                 });
 
             modelBuilder.Entity("Selectra.Models.OrdenAprobacion", b =>
@@ -1543,7 +1552,7 @@ namespace Selectra.Migrations
                     b.Navigation("OfertasLaborales");
                 });
 
-            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltro", b =>
+            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltros", b =>
                 {
                     b.Navigation("PreguntasFiltro");
                 });

@@ -320,37 +320,37 @@ namespace Selectra.Services.Usuarios
             }
         }
 
-        public async Task<bool> ActualizarAspirante(ActualizarAspiranteDto aspiranteDto, int personalId, int usuarioQueModificaId)
+        public async Task<bool> ActualizarAspirante(ActualizarAspiranteDto aspiranteDto, int aspiranteId, int usuarioQueModificaId)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
-                var personal = await _context.Personales
+                var aspirante = await _context.Aspirantes
                     .Include(p => p.DatosPersonales)
                     .Include(p => p.DatosPersonales.Usuario)
-                    .FirstOrDefaultAsync(p => p.personalId == personalId);
+                    .FirstOrDefaultAsync(p => p.aspiranteId == aspiranteId);
 
                 // Si no se encuentra el personal, lanzar una excepción.
-                if (personal == null || personal.DatosPersonales == null || personal.DatosPersonales.Usuario == null)
+                if (aspirante == null || aspirante.DatosPersonales == null || aspirante.DatosPersonales.Usuario == null)
                 {
-                    throw new KeyNotFoundException($"No se encontró el registro de personal con el ID {personalId}.");
+                    throw new KeyNotFoundException($"No se encontró el registro de personal con el ID {aspirante}.");
                 }
 
                 // --- VALIDACIONES ---
                 // Validar que el nuevo email corporativo no esté en uso por OTRO personal.
-                if (personal.emailCorporativo != aspiranteDto.EmailCorporativo)
+                if (aspirante.emailCorporativo != aspiranteDto.EmailCorporativo)
                 {
-                    if (await _context.Personales.AnyAsync(p => p.emailCorporativo == aspiranteDto.EmailCorporativo && p.personalId != personalId))
+                    if (await _context.Aspirantes.AnyAsync(p => p.emailCorporativo == aspiranteDto.EmailCorporativo && p.aspiranteId != aspiranteId))
                     {
                         throw new ApplicationException($"El email corporativo '{aspiranteDto.EmailCorporativo}' ya está en uso.");
                     }
                 }
 
                 // Validar que el nuevo número de documento no esté en uso por OTRA persona.
-                if (personal.DatosPersonales.numeroDocumento != aspiranteDto.NumeroDocumento)
+                if (aspirante.DatosPersonales.numeroDocumento != aspiranteDto.NumeroDocumento)
                 {
-                    if (await _context.DatosPersonales.AnyAsync(dp => dp.tipoDocumentoId == aspiranteDto.TipoDocumentoId && dp.numeroDocumento == personalDto.NumeroDocumento && dp.datosPersonalesId != personal.datosPersonalesId))
+                    if (await _context.DatosPersonales.AnyAsync(dp => dp.tipoDocumentoId == aspiranteDto.TipoDocumentoId && dp.numeroDocumento == aspiranteDto.NumeroDocumento && dp.datosPersonalesId != aspirante.datosPersonalesId))
                     {
                         throw new ApplicationException($"El documento '{aspiranteDto.NumeroDocumento}' ya está registrado.");
                     }
@@ -359,8 +359,8 @@ namespace Selectra.Services.Usuarios
 
                 // --- ACTUALIZACIÓN DE ENTIDADES ---
                 var ahora = DateTime.UtcNow;
-                var usuario = personal.DatosPersonales.Usuario;
-                var datosPersonales = personal.DatosPersonales;
+                var usuario = aspirante.DatosPersonales.Usuario;
+                var datosPersonales = aspirante.DatosPersonales;
 
                 // 3. Actualizar la entidad Usuario
                 usuario.rolId = aspiranteDto.RolId;
@@ -373,6 +373,8 @@ namespace Selectra.Services.Usuarios
                 {
                     usuario.claveHash = BCrypt.Net.BCrypt.HashPassword(aspiranteDto.Clave);
                 }
+
+                var pathCV = aspiranteDto.Nombres + "_" + aspiranteDto.ApellidoPaterno + "_" + aspiranteDto.ApellidoMaterno + "_" + aspiranteDto.NumeroDocumento + ".pdf";
 
                 // 4. Actualizar la entidad DatosPersonales
                 datosPersonales.nombres = aspiranteDto.Nombres;
@@ -388,14 +390,25 @@ namespace Selectra.Services.Usuarios
                 datosPersonales.fechaUltMod = ahora;
                 datosPersonales.usuarioUltModId = usuarioQueModificaId;
 
-                personal.emailCorporativo = aspiranteDto.EmailCorporativo;
-                personal.areaId = aspiranteDto.AreaId;
-                personal.cargoId = aspiranteDto.CargoId;
-                personal.jefeDirectoId = aspiranteDto.JefeDirectoId;
-                personal.fechaIngresoCompania = aspiranteDto.FechaIngresoCompania;
-                personal.activo = aspiranteDto.Activo;
+                aspirante.emailCorporativo = aspiranteDto.EmailCorporativo;
+                aspirante.nivelAcademicoId = aspiranteDto.nivelAcademicoId;
+                aspirante.estado = aspiranteDto.Activo;
+                aspirante.pathCV = pathCV;
+                aspirante.pathFoto = aspiranteDto.pathFoto;
+                aspirante.fechaCreacion = aspiranteDto.fechaCreacion;
+                aspirante.fechaUltMod = ahora;
+                aspirante.usuarioUltModId = usuarioQueModificaId;
 
                 await _context.SaveChangesAsync();
+
+                if (!string.IsNullOrEmpty(aspiranteDto.pathCV))
+                {
+                    using (FileStream stream = File.Create("../../CVs/" + pathCV))
+                    {
+                        Byte[] byteArray = Convert.FromBase64String(aspiranteDto.pathCV);
+                        stream.Write(byteArray, 0, byteArray.Length);
+                    }
+                }
 
                 await transaction.CommitAsync();
 

@@ -142,5 +142,19 @@ namespace Selectra.Controllers
 
             return Ok(actualizado);
         }
+
+        [HttpPut("actualizarAspirante/{aspiranteId}")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> actualizarAspirante([FromBody] ActualizarAspiranteDto aspiranteDto, int aspiranteId)
+        {
+            var actualizado = await _usuarioService.ActualizarAspirante(aspiranteDto, aspiranteId, 1);
+
+            if (!actualizado)
+            {
+                return BadRequest(new { message = "Error al actualizar el aspirante." });
+            }
+
+            return Ok(actualizado);
+        }
     }
 }

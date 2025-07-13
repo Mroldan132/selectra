@@ -38,7 +38,7 @@ namespace Selectra.DTOs
         public string NumeroDocumento { get; set; }
 
         [StringLength(40)]
-        public string? Telefono { get; set; }
+        public string Telefono { get; set; }
 
         [EmailAddress]
         [StringLength(50)]

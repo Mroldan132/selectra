@@ -339,11 +339,11 @@ namespace Selectra.Services.Usuarios
 
                 // --- VALIDACIONES ---
                 // Validar que el nuevo email corporativo no esté en uso por OTRO personal.
-                if (aspirante.emailCorporativo != aspiranteDto.EmailCorporativo)
+                if (aspirante.DatosPersonales.emailPersonal != aspiranteDto.EmailPersonal)
                 {
-                    if (await _context.Aspirantes.AnyAsync(p => p.emailCorporativo == aspiranteDto.EmailCorporativo && p.aspiranteId != aspiranteId))
+                    if (await _context.Aspirantes.AnyAsync(p => p.DatosPersonales.emailPersonal == aspiranteDto.EmailPersonal && p.aspiranteId != aspiranteId))
                     {
-                        throw new ApplicationException($"El email corporativo '{aspiranteDto.EmailCorporativo}' ya está en uso.");
+                        throw new ApplicationException($"El email corporativo '{aspiranteDto.EmailPersonal}' ya está en uso.");
                     }
                 }
 
@@ -390,7 +390,6 @@ namespace Selectra.Services.Usuarios
                 datosPersonales.fechaUltMod = ahora;
                 datosPersonales.usuarioUltModId = usuarioQueModificaId;
 
-                aspirante.emailCorporativo = aspiranteDto.EmailCorporativo;
                 aspirante.nivelAcademicoId = aspiranteDto.nivelAcademicoId;
                 aspirante.estado = aspiranteDto.Activo;
                 aspirante.pathCV = pathCV;

@@ -2,8 +2,9 @@
 
 namespace Selectra.DTOs
 {
-    public class RegistrarAspiranteDto : IDatosPersonalesBasicosDto
+    public class ActualizarAspiranteDto : IDatosPersonalesBasicosDto
     {
+
         [Required]
         [StringLength(50)]
         public string CodUsuario { get; set; }
@@ -12,10 +13,10 @@ namespace Selectra.DTOs
         [MinLength(8)]
         public string Clave { get; set; }
 
+        public bool Activo { get; set; } = true;
+
         [Required]
         public int RolId { get; set; }
-
-        public bool Activo { get; set; } = true;
         // Implementación de la interfaz IDatosPersonalesBasicosDto
         [Required]
         [StringLength(200)]
@@ -52,8 +53,8 @@ namespace Selectra.DTOs
         public DateTime? FechaNacimiento { get; set; }
 
         // Datos específicos de la tabla Personal
-        public string? PathCV { get; set; }
-        public string? PathFoto { get; set; }
+        public string? pathCV { get; set; }
+        public string? pathFoto { get; set; }
         public DateTime fechaCreacion { get; set; }
         public DateTime fechaUltMod { get; set; }
         public int? usuarioUltModId { get; set; }
@@ -62,6 +63,6 @@ namespace Selectra.DTOs
         public bool estado { get; set; }
 
         [Required]
-        public int NivelAcademicoId { get; set; }
+        public int nivelAcademicoId { get; set; }
     }
 }

@@ -22,9 +22,9 @@ namespace Selectra.Models
         public DbSet<TipoDocumento> TiposDocumentos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<OrdenAprobacion> OrdenesAprobaciones { get; set; }
-        public DbSet<PreguntaFiltro> PreguntasFiltros { get; set; }
+        public DbSet<PreguntasFiltros> PreguntasFiltros { get; set; }
         public DbSet<OpcionPreguntaFiltro> OpcionesPreguntasFiltros { get; set; }
-        public DbSet<TipoPreguntasFiltros> TipoPreguntasFiltros { get; set; }
+        public DbSet<TipoPreguntasFiltro> TipoPreguntasFiltros { get; set; }
         public DbSet<TiposRequerimiento> TiposRequerimientos { get; set; }
         public DbSet<EstadoHistorialAprobacion> EstadosHistorialAprobaciones { get; set; }
         public DbSet<EstadoOfertaLaboral> EstadosOfertaLaborales { get; set; }

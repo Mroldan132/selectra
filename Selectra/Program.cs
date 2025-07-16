@@ -14,6 +14,7 @@ using Selectra.Services.Personales;
 using Selectra.Services.Postulantes;
 using Selectra.Services.Requerimiento;
 using Selectra.Services.TipoDocumento;
+using Selectra.Services.TipoPreguntasFiltro;
 using Selectra.Services.Usuarios;
 using Selectra.Services.Vacaciones;
 using System.Text;
@@ -36,6 +37,7 @@ builder.Services.AddScoped<IOfertasLaboralesServices, OfertasLaboralesServices>(
 builder.Services.AddScoped<ISolicitudVacacionesService, SolicitudVacacionesService>();
 builder.Services.AddScoped<IPostulanteService, PostulanteService>();
 builder.Services.AddScoped<ITiposDocumentosService, TiposDocumentosService>();
+builder.Services.AddScoped<ITipoPreguntasFiltroService, TipoPreguntasFiltroService>();
 
 //Conexion a la base de datos
 builder.Services.AddDbContext<SelectraContext>(options =>

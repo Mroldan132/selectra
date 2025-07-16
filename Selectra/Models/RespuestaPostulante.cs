@@ -19,7 +19,7 @@ namespace Selectra.Models
 
         [ForeignKey("PreguntaFiltro")]
         public int preguntaFiltroId { get; set; }
-        public virtual PreguntaFiltro PreguntaFiltro { get; set; }
+        public virtual PreguntasFiltros PreguntaFiltro { get; set; }
 
         [Required]
         public string valorRespuesta { get; set; } 

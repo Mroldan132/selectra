@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Selectra")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1634090fdcdeebd28b75479e547f081215c3f2aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+290a4e173efcf4ee9b751b4d15d41ed73e3d3576")]
 [assembly: System.Reflection.AssemblyProductAttribute("Selectra")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Selectra")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

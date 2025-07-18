@@ -25,6 +25,19 @@ namespace Selectra.Services.TipoPreguntasFiltro
                 .ToListAsync();
         }
 
+        
+        public async Task<ListaTipoPreguntasFiltroDto?> GetTipoPreguntasFiltroPorIdAsync(int id)
+        {
+            return await _context.TipoPreguntasFiltros
+                .Where(i => i.tipoPreguntaId == id)
+                .Select(i => new ListaTipoPreguntasFiltroDto
+                {
+                    tipoPreguntaId = i.tipoPreguntaId,
+                    nombre = i.nombre
+                })
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<bool> CrearTipoPreguntasFiltroAsync(CrearTipoPreguntasFiltroDto dto)
         {
             var tipoPreguntas = new Models.TipoPreguntasFiltro
@@ -42,11 +55,25 @@ namespace Selectra.Services.TipoPreguntasFiltro
             var tipoPreguntas = await _context.TipoPreguntasFiltros.FindAsync(dto.tipoPreguntaId);
             if (tipoPreguntas == null)
             {
-                return false; // No se encontró
+                return false;
             }
 
             tipoPreguntas.nombre = dto.nombre;
             _context.TipoPreguntasFiltros.Update(tipoPreguntas);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        
+        public async Task<bool> EliminarTipoPreguntasFiltroAsync(int id)
+        {
+            var tipoPreguntas = await _context.TipoPreguntasFiltros.FindAsync(id);
+            if (tipoPreguntas == null)
+            {
+                return false;
+            }
+
+            _context.TipoPreguntasFiltros.Remove(tipoPreguntas);
             await _context.SaveChangesAsync();
             return true;
         }

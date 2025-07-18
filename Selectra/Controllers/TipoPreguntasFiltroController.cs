@@ -8,6 +8,7 @@ namespace Selectra.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Administrador")] //  Autorización global para todos los endpoints
     public class TipoPreguntasFiltroController : ControllerBase
     {
         private readonly ITipoPreguntasFiltroService _tipoPreguntasFiltroService;
@@ -17,20 +18,31 @@ namespace Selectra.Controllers
             _tipoPreguntasFiltroService = tipoPreguntasFiltroService;
         }
 
+        // GET: api/TipoPreguntasFiltro
         [HttpGet]
-        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> GetListaTipoPreguntasFiltro()
         {
             var listaTipoPreguntasFiltro = await _tipoPreguntasFiltroService.GetListaTipoPreguntasFiltroAsync();
-            if (listaTipoPreguntasFiltro == null || !listaTipoPreguntasFiltro.Any())
-            {
-                return NotFound(new { message = "No se encontraron tipos de preguntas filtro." });
-            }
+
+           
             return Ok(listaTipoPreguntasFiltro);
         }
 
+        // GET: api/TipoPreguntasFiltro/{id}
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetTipoPreguntasFiltroPorId(int id)
+        {
+            var tipo = await _tipoPreguntasFiltroService.GetTipoPreguntasFiltroPorIdAsync(id);
+            if (tipo == null)
+            {
+                return NotFound(new { message = $"No se encontró el tipo de pregunta con ID {id}." });
+            }
+
+            return Ok(tipo);
+        }
+
+        //POST: api/TipoPreguntasFiltro
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> CrearTipoPreguntasFiltro([FromBody] CrearTipoPreguntasFiltroDto dto)
         {
             if (!ModelState.IsValid)
@@ -38,8 +50,7 @@ namespace Selectra.Controllers
                 return BadRequest(new
                 {
                     message = "Datos inválidos",
-                    errores = ModelState.Values.SelectMany(v => v.Errors)
-                                               .Select(e => e.ErrorMessage)
+                    errores = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)
                 });
             }
 
@@ -52,8 +63,8 @@ namespace Selectra.Controllers
             return Ok(new { message = "Tipo de pregunta filtro creado correctamente." });
         }
 
-        [HttpPut("{id}")]
-        [Authorize(Roles = "Administrador")]
+        // PUT: api/TipoPreguntasFiltro/{id}
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> ActualizarTipoPreguntasFiltro(int id, [FromBody] ActualizarTipoPreguntasFiltroDto dto)
         {
             if (id != dto.tipoPreguntaId)
@@ -66,8 +77,7 @@ namespace Selectra.Controllers
                 return BadRequest(new
                 {
                     message = "Datos inválidos",
-                    errores = ModelState.Values.SelectMany(v => v.Errors)
-                                               .Select(e => e.ErrorMessage)
+                    errores = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)
                 });
             }
 
@@ -78,6 +88,19 @@ namespace Selectra.Controllers
             }
 
             return Ok(new { message = "Tipo de pregunta filtro actualizado correctamente." });
+        }
+
+        // DELETE: api/TipoPreguntasFiltro/{id}
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> EliminarTipoPreguntasFiltro(int id)
+        {
+            var eliminado = await _tipoPreguntasFiltroService.EliminarTipoPreguntasFiltroAsync(id);
+            if (!eliminado)
+            {
+                return NotFound(new { message = $"No se encontró el tipo de pregunta con ID {id}." });
+            }
+
+            return Ok(new { message = "Tipo de pregunta filtro eliminado correctamente." });
         }
     }
 }

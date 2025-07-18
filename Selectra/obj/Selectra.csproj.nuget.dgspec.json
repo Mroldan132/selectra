@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Renzo\\Source\\Repos\\selectra\\Selectra\\Selectra.csproj": {}
+    "C:\\Users\\Invitadocvp\\Source\\Repos\\selectra\\Selectra\\Selectra.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Renzo\\Source\\Repos\\selectra\\Selectra\\Selectra.csproj": {
+    "C:\\Users\\Invitadocvp\\Source\\Repos\\selectra\\Selectra\\Selectra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Renzo\\Source\\Repos\\selectra\\Selectra\\Selectra.csproj",
+        "projectUniqueName": "C:\\Users\\Invitadocvp\\Source\\Repos\\selectra\\Selectra\\Selectra.csproj",
         "projectName": "Selectra",
-        "projectPath": "C:\\Users\\Renzo\\Source\\Repos\\selectra\\Selectra\\Selectra.csproj",
-        "packagesPath": "C:\\Users\\Renzo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Renzo\\Source\\Repos\\selectra\\Selectra\\obj\\",
+        "projectPath": "C:\\Users\\Invitadocvp\\Source\\Repos\\selectra\\Selectra\\Selectra.csproj",
+        "packagesPath": "C:\\Users\\Invitadocvp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Invitadocvp\\Source\\Repos\\selectra\\Selectra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Renzo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Invitadocvp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

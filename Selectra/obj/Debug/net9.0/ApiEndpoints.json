@@ -367,6 +367,53 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Selectra.Controllers.OpcionPreguntaFiltroController",
+    "Method": "GetListaOpcionPreguntaFiltro",
+    "RelativePath": "api/OpcionPreguntaFiltro",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OpcionPreguntaFiltroController",
+    "Method": "ActualizarOpcionPreguntaFiltro",
+    "RelativePath": "api/OpcionPreguntaFiltro/actualizar/{idOpcionPreguntaFiltro}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idOpcionPreguntaFiltro",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.ActualizarOpcionPreguntaFiltroDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OpcionPreguntaFiltroController",
+    "Method": "GenerarOpcionPreguntaFiltro",
+    "RelativePath": "api/OpcionPreguntaFiltro/generarOpcionPreguntaFiltro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Selectra.DTOs.DetalleOpcionPreguntaFiltroDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Selectra.Controllers.PersonalesController",
     "Method": "DetallePersonal",
     "RelativePath": "api/Personales/detallePersonal/{personalId}",
@@ -708,7 +755,23 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Selectra.DTOs.ListaTipoPreguntasFiltroDto",
+        "Type": "Selectra.DTOs.CrearTipoPreguntasFiltroDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.TipoPreguntasFiltroController",
+    "Method": "GetTipoPreguntasFiltroPorId",
+    "RelativePath": "api/TipoPreguntasFiltro/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -717,14 +780,35 @@
   {
     "ContainingType": "Selectra.Controllers.TipoPreguntasFiltroController",
     "Method": "ActualizarTipoPreguntasFiltro",
-    "RelativePath": "api/TipoPreguntasFiltro",
+    "RelativePath": "api/TipoPreguntasFiltro/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
         "Name": "dto",
-        "Type": "Selectra.DTOs.ListaTipoPreguntasFiltroDto",
+        "Type": "Selectra.DTOs.ActualizarTipoPreguntasFiltroDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.TipoPreguntasFiltroController",
+    "Method": "EliminarTipoPreguntasFiltro",
+    "RelativePath": "api/TipoPreguntasFiltro/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

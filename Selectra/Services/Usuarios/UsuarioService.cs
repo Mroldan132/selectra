@@ -183,10 +183,10 @@ namespace Selectra.Services.Usuarios
             return personal;
         }
 
-        private async Task<Aspirantes> CrearAspiranteAsync(RegistrarAspiranteDto registroDto, int datosPersonalesId)
+        private async Task<Models.Aspirantes> CrearAspiranteAsync(RegistrarAspiranteDto registroDto, int datosPersonalesId)
         {
-            var ahora = DateTime.UtcNow; 
-            var aspirante = new Aspirantes
+            var ahora = DateTime.UtcNow;
+            var aspirante = new Models.Aspirantes // Ensure the correct namespace is used  
             {
                 datosPersonalesId = datosPersonalesId,
                 nivelAcademicoId = registroDto.NivelAcademicoId,
@@ -317,6 +317,106 @@ namespace Selectra.Services.Usuarios
             {
                 await transaction.RollbackAsync();
                 throw; 
+            }
+        }
+
+        public async Task<bool> ActualizarAspirante(ActualizarAspiranteDto aspiranteDto, int aspiranteId, int usuarioQueModificaId)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                var aspirante = await _context.Aspirantes
+                    .Include(p => p.DatosPersonales)
+                    .Include(p => p.DatosPersonales.Usuario)
+                    .FirstOrDefaultAsync(p => p.aspiranteId == aspiranteId);
+
+                // Si no se encuentra el personal, lanzar una excepción.
+                if (aspirante == null || aspirante.DatosPersonales == null || aspirante.DatosPersonales.Usuario == null)
+                {
+                    throw new KeyNotFoundException($"No se encontró el registro de personal con el ID {aspirante}.");
+                }
+
+                // --- VALIDACIONES ---
+                // Validar que el nuevo email corporativo no esté en uso por OTRO personal.
+                if (aspirante.DatosPersonales.emailPersonal != aspiranteDto.EmailPersonal)
+                {
+                    if (await _context.Aspirantes.AnyAsync(p => p.DatosPersonales.emailPersonal == aspiranteDto.EmailPersonal && p.aspiranteId != aspiranteId))
+                    {
+                        throw new ApplicationException($"El email corporativo '{aspiranteDto.EmailPersonal}' ya está en uso.");
+                    }
+                }
+
+                // Validar que el nuevo número de documento no esté en uso por OTRA persona.
+                if (aspirante.DatosPersonales.numeroDocumento != aspiranteDto.NumeroDocumento)
+                {
+                    if (await _context.DatosPersonales.AnyAsync(dp => dp.tipoDocumentoId == aspiranteDto.TipoDocumentoId && dp.numeroDocumento == aspiranteDto.NumeroDocumento && dp.datosPersonalesId != aspirante.datosPersonalesId))
+                    {
+                        throw new ApplicationException($"El documento '{aspiranteDto.NumeroDocumento}' ya está registrado.");
+                    }
+                }
+
+
+                // --- ACTUALIZACIÓN DE ENTIDADES ---
+                var ahora = DateTime.UtcNow;
+                var usuario = aspirante.DatosPersonales.Usuario;
+                var datosPersonales = aspirante.DatosPersonales;
+
+                // 3. Actualizar la entidad Usuario
+                usuario.rolId = aspiranteDto.RolId;
+                usuario.activo = aspiranteDto.Activo;
+                usuario.fechaUltMod = ahora;
+                usuario.usuarioUltModId = usuarioQueModificaId;
+
+                // Solo actualizar la contraseña si se proporcionó una nueva.
+                if (!string.IsNullOrWhiteSpace(aspiranteDto.Clave))
+                {
+                    usuario.claveHash = BCrypt.Net.BCrypt.HashPassword(aspiranteDto.Clave);
+                }
+
+                var pathCV = aspiranteDto.Nombres + "_" + aspiranteDto.ApellidoPaterno + "_" + aspiranteDto.ApellidoMaterno + "_" + aspiranteDto.NumeroDocumento + ".pdf";
+
+                // 4. Actualizar la entidad DatosPersonales
+                datosPersonales.nombres = aspiranteDto.Nombres;
+                datosPersonales.apellidoPaterno = aspiranteDto.ApellidoPaterno;
+                datosPersonales.apellidoMaterno = aspiranteDto.ApellidoMaterno;
+                datosPersonales.tipoDocumentoId = aspiranteDto.TipoDocumentoId;
+                datosPersonales.numeroDocumento = aspiranteDto.NumeroDocumento;
+                datosPersonales.emailPersonal = aspiranteDto.EmailPersonal;
+                datosPersonales.telefono = aspiranteDto.Telefono;
+                datosPersonales.ubigeoNacimientoId = aspiranteDto.UbigeoNacimiento;
+                datosPersonales.ubigeoResidenciaId = aspiranteDto.UbigeoResidencia;
+                datosPersonales.fechaNacimiento = aspiranteDto.FechaNacimiento;
+                datosPersonales.fechaUltMod = ahora;
+                datosPersonales.usuarioUltModId = usuarioQueModificaId;
+
+                aspirante.nivelAcademicoId = aspiranteDto.nivelAcademicoId;
+                aspirante.estado = aspiranteDto.Activo;
+                aspirante.pathCV = pathCV;
+                aspirante.pathFoto = aspiranteDto.pathFoto;
+                aspirante.fechaCreacion = aspiranteDto.fechaCreacion;
+                aspirante.fechaUltMod = ahora;
+                aspirante.usuarioUltModId = usuarioQueModificaId;
+
+                await _context.SaveChangesAsync();
+
+                if (!string.IsNullOrEmpty(aspiranteDto.pathCV))
+                {
+                    using (FileStream stream = File.Create("../../CVs/" + pathCV))
+                    {
+                        Byte[] byteArray = Convert.FromBase64String(aspiranteDto.pathCV);
+                        stream.Write(byteArray, 0, byteArray.Length);
+                    }
+                }
+
+                await transaction.CommitAsync();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                throw;
             }
         }
     }

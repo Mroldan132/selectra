@@ -12,6 +12,7 @@ namespace Selectra.Services.Usuarios
         Task<List<ListaRolesDto>> GetListaRolesAync();
         Task<bool> VerificarExisteUsuario(string usuario);
         Task<bool> ActualizarPersonal(ActualizarPersonalDto personalDto,int personalId,int usuarioQueModificaId);
+        Task<bool> ActualizarAspirante(ActualizarAspiranteDto aspiranteDto, int aspiranteId, int usuarioQueModificaId);
 
     }
 }

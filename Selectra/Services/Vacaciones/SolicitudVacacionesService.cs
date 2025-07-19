@@ -39,10 +39,14 @@ public class SolicitudVacacionesService : ISolicitudVacacionesService
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<SolicitudVacacionesDto>> GetSolicitudesPendientesPorAprobadorIdAsync(int aprobadorId)
+    public async Task<IEnumerable<SolicitudVacacionesDto>> GetSolicitudesPendientesPorAprobadorIdAsync(int usuarioId)
     {
+        var personal = await _context.Personales
+            .Include(i => i.DatosPersonales)
+            .FirstOrDefaultAsync(i => i.DatosPersonales.usuarioId == usuarioId);
+
         return await _context.SolicitudVacaciones
-            .Where(s => s.AprobadorId == aprobadorId && s.estadoId == ESTADO_PENDIENTE)
+            .Where(s => s.AprobadorId == personal.personalId )
             .Include(s => s.Personal) 
             .Include(s => s.Estado)
             .OrderBy(s => s.FechaCreacion)
@@ -55,7 +59,8 @@ public class SolicitudVacacionesService : ISolicitudVacacionesService
                 DiasSolicitados = (s.FechaFin - s.FechaInicio).TotalDays + 1,
                 FechaCreacion = s.FechaCreacion,
                 Estado = s.Estado.Nombre,
-                ComentariosEmpleado = s.ComentariosEmpleado
+                ComentariosEmpleado = s.ComentariosEmpleado,
+                ComentariosAprobador = s.ComentariosAprobador
             })
             .ToListAsync();
     }
@@ -106,23 +111,28 @@ public class SolicitudVacacionesService : ISolicitudVacacionesService
         return (    true, (string?)null);
     }
 
-    public async Task<(bool Exitoso, string ErrorMessage)> AprobarSolicitudAsync(int solicitudId, int aprobadorId)
+    public async Task<(bool Exitoso, string ErrorMessage)> AprobarSolicitudAsync(int solicitudId, int usuarioId,string motivo)
     {
         using var transaction = await _context.Database.BeginTransactionAsync();
 
         try
         {
+            var personal = await _context.Personales
+                .Include(i => i.DatosPersonales)
+                .FirstOrDefaultAsync(i => i.DatosPersonales.usuarioId == usuarioId);
+
             var solicitud = await _context.SolicitudVacaciones
                 .Include(s => s.Personal) 
                 .FirstOrDefaultAsync(s => s.id == solicitudId);
 
             if (solicitud == null) return (false, "Solicitud no encontrada.");
-            if (solicitud.AprobadorId != aprobadorId) return (false, "No tiene permisos para aprobar esta solicitud.");
+            if (solicitud.AprobadorId != personal.personalId) return (false, "No tiene permisos para aprobar esta solicitud.");
             if (solicitud.estadoId != ESTADO_PENDIENTE) return (false, "Esta solicitud ya ha sido procesada.");
 
             var diasSolicitados = (decimal)(solicitud.FechaFin - solicitud.FechaInicio).TotalDays + 1;
 
             solicitud.estadoId = ESTADO_APROBADA;
+            solicitud.ComentariosAprobador = motivo;
 
             solicitud.Personal.DiasVacacionesDisponibles -= diasSolicitados;
 
@@ -139,12 +149,15 @@ public class SolicitudVacacionesService : ISolicitudVacacionesService
         }
     }
 
-    public async Task<(bool Exitoso, string ErrorMessage)> RechazarSolicitudAsync(int solicitudId, int aprobadorId, string motivo)
+    public async Task<(bool Exitoso, string ErrorMessage)> RechazarSolicitudAsync(int solicitudId, int usuarioId, string motivo)
     {
         var solicitud = await _context.SolicitudVacaciones.FindAsync(solicitudId);
 
+        var personal = await _context.Personales
+            .Include(i => i.DatosPersonales)
+            .FirstOrDefaultAsync(i => i.DatosPersonales.usuarioId == usuarioId);
         if (solicitud == null) return (false, "Solicitud no encontrada.");
-        if (solicitud.AprobadorId != aprobadorId) return (false, "No tiene permisos para rechazar esta solicitud.");
+        if (solicitud.AprobadorId != personal.personalId) return (false, "No tiene permisos para rechazar esta solicitud.");
         if (solicitud.estadoId != ESTADO_PENDIENTE) return (false, "Esta solicitud ya ha sido procesada.");
         if (string.IsNullOrWhiteSpace(motivo)) return (false, "Debe proporcionar un motivo para el rechazo.");
 
@@ -156,6 +169,7 @@ public class SolicitudVacacionesService : ISolicitudVacacionesService
 
         return (true, null);
     }
+
     public async Task AcreditarVacacionesAnuales()
     {
         var empleadosActivos = await _context.Personales

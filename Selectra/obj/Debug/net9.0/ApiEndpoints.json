@@ -399,6 +399,22 @@
   },
   {
     "ContainingType": "Selectra.Controllers.OpcionPreguntaFiltroController",
+    "Method": "EliminarOpcionPreguntaFiltro",
+    "RelativePath": "api/OpcionPreguntaFiltro/eliminar/{idOpcionPreguntaFiltro}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idOpcionPreguntaFiltro",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.OpcionPreguntaFiltroController",
     "Method": "GenerarOpcionPreguntaFiltro",
     "RelativePath": "api/OpcionPreguntaFiltro/generarOpcionPreguntaFiltro",
     "HttpMethod": "POST",
@@ -511,6 +527,22 @@
       {
         "Name": "preguntaFiltroDto",
         "Type": "Selectra.DTOs.ActualizarPreguntasFiltrosDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Selectra.Controllers.PreguntasFiltrosController",
+    "Method": "EliminarPreguntaFiltro",
+    "RelativePath": "api/PreguntasFiltros/eliminar/{idPreguntaFiltro}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPreguntaFiltro",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

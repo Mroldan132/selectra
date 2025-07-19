@@ -8,5 +8,6 @@ namespace Selectra.Services.OpcionPreguntaFiltro
         Task<bool> GenerarOpcionPreguntaFiltroAsync(DetalleOpcionPreguntaFiltroDto opcionPreguntaFiltroDto);
 
         Task<bool> ActualizarOpcionPreguntaFiltroAsync(int idOpcionPreguntaFiltro, ActualizarOpcionPreguntaFiltroDto actualizarOpcionPreguntaFiltroDto);
+        Task<bool> EliminarOpcionPreguntaFiltroAsync(int idOpcionPreguntaFiltro);
     }
 }

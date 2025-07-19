@@ -1,17 +1,16 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Selectra.DTOs
 {
     public class ActualizarOpcionPreguntaFiltroDto
     {
         [Required(ErrorMessage = "El texto de la opción es obligatorio.")]
-        [StringLength(100, ErrorMessage = "El texto de la opción no puede exceder los 100 caracteres.")]
-        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "El texto de la opción solo puede contener letras, números y espacios.")]
+        [StringLength(500, ErrorMessage = "El texto de la opción no puede exceder los 500 caracteres.")]
+        [RegularExpression(@"^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ.,!?()-]+$",
+            ErrorMessage = "El texto solo puede contener letras, números, espacios y algunos signos de puntuación.")]
         public string textoOpcion { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = "El orden debe ser un número entero no negativo.")]
-
-        public int orden { get; set; }
+        public int? orden { get; set; }
     }
 }

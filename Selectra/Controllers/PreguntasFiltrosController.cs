@@ -19,27 +19,37 @@ namespace Selectra.Controllers
         [Authorize (Roles = "Administrador")]
         public async Task<IActionResult> GetListaPreguntasFiltros()
         {
-            var listaPreguntasFiltros = await _preguntasFiltrosService.GetListaPreguntasFiltrosAsync();
-            if (listaPreguntasFiltros == null)
-            {
-                return NotFound("No se encontraron preguntas filtros.");
-            }
-            return Ok(listaPreguntasFiltros);
+            var lista = await _preguntasFiltrosService.GetListaPreguntasFiltrosAsync();
 
+            if (lista == null || !lista.Any())
+                return NotFound(new { message = "No se encontraron preguntas filtros." });
+
+            return Ok(lista);
         }
+
+
         [HttpPost("generarPreguntaFiltro")]
-        [Authorize (Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> GenerarPreguntaFiltro([FromBody] DetallePreguntasFiltrosDto preguntaFiltroDto)
         {
-            
-            var preguntaFiltroCreada = await _preguntasFiltrosService.GenerarPreguntaFiltroAsync(preguntaFiltroDto);
-            if (!preguntaFiltroCreada)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Error al generar la pregunta filtro.");
+                return BadRequest(new
+                {
+                    message = "Datos inválidos",
+                    errores = ModelState.Values.SelectMany(v => v.Errors)
+                                               .Select(e => e.ErrorMessage)
+                });
             }
-            return Ok("Pregunta filtro creada satisfactoriamente.");
 
-        }
+            var preguntaFiltroCreada = await _preguntasFiltrosService.GenerarPreguntaFiltroAsync(preguntaFiltroDto);
+
+            if (!preguntaFiltroCreada)
+                return BadRequest(new { message = "Error al generar la pregunta filtro." });
+
+            return Ok(new { message = "Pregunta filtro creada satisfactoriamente." });
+        } 
+
         [HttpPut("actualizar/{idPreguntaFiltro}")]
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> ActualizarPreguntaFiltro( int idPreguntaFiltro,[FromBody] ActualizarPreguntasFiltrosDto preguntaFiltroDto)
@@ -75,7 +85,30 @@ namespace Selectra.Controllers
             }
         }
 
+        [HttpDelete("eliminar/{idPreguntaFiltro}")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> EliminarPreguntaFiltro(int idPreguntaFiltro)
+        {
+            try
+            {
+                var eliminado = await _preguntasFiltrosService.EliminarPreguntaFiltroAsync(idPreguntaFiltro);
 
+                if (!eliminado)
+                {
+                    return NotFound(new { message = $"La pregunta filtro con ID {idPreguntaFiltro} no fue encontrada." });
+                }
+
+                return Ok(new { message = "Pregunta filtro eliminada satisfactoriamente." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = "Error interno al eliminar la pregunta filtro",
+                    detalle = ex.Message
+                });
+            }
+        }
 
     }
 }

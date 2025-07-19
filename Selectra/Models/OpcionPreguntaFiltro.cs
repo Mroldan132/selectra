@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Selectra.Models
 {
+    [Table("OpcionPreguntaFiltro")]
     public class OpcionPreguntaFiltro
     {
         [Key]

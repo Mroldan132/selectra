@@ -16,8 +16,6 @@ namespace Selectra.Controllers
             _nivelAcademicosService = nivelAcademicosService;
         }
         [HttpGet]
-        [Authorize(Roles = "Administrador")]
-
         public async Task<IActionResult> GetListaNivelAcademicos()
         {
             var listaNivelAcademicos = await _nivelAcademicosService.GetListaNivelAcademicosAsync();

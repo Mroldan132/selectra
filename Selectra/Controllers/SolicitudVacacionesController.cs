@@ -34,10 +34,16 @@ namespace Selectra.Controllers
             return Ok(solicitudes);
         }
 
-        [HttpGet("pendientes-aprobacion/{aprobadorId}")]
-        public async Task<IActionResult> GetSolicitudesPendientesParaAprobacion(int aprobadorId)
+        [HttpGet("pendientes-aprobacion")]
+        public async Task<IActionResult> GetSolicitudesPendientesParaAprobacion()
         {
-            var solicitudes = await _solicitudService.GetSolicitudesPendientesPorAprobadorIdAsync(aprobadorId);
+            var usuarioIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(usuarioIdStr, out int usuarioId))
+            {
+                return Forbid("No se pudo identificar al usuario.");
+            }
+
+            var solicitudes = await _solicitudService.GetSolicitudesPendientesPorAprobadorIdAsync(usuarioId);
             return Ok(solicitudes);
         }
 
@@ -59,10 +65,16 @@ namespace Selectra.Controllers
             return Ok(new { message = "Solicitud creada exitosamente." });
         }
 
-        [HttpPost("{id}/aprobar/{aprobadorId}")]
-        public async Task<IActionResult> AprobarSolicitud(int id, int aprobadorId)
+        [HttpPost("{id}/aprobar")]
+        public async Task<IActionResult> AprobarSolicitud(int id, [FromBody] RechazarDto rechazoDto)
         {
-            var resultado = await _solicitudService.AprobarSolicitudAsync(id, aprobadorId);
+            var usuarioIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(usuarioIdStr, out int usuarioId))
+            {
+                return Forbid("No se pudo identificar al usuario.");
+            }
+
+            var resultado = await _solicitudService.AprobarSolicitudAsync(id, usuarioId,rechazoDto.Motivo);
 
             if (!resultado.Exitoso)
             {
@@ -77,7 +89,12 @@ namespace Selectra.Controllers
         [HttpPost("{id}/rechazar")]
         public async Task<IActionResult> RechazarSolicitud(int id, [FromBody] RechazarDto rechazoDto)
         {
-            var resultado = await _solicitudService.RechazarSolicitudAsync(id, rechazoDto.AprobadorId, rechazoDto.Motivo);
+            var usuarioIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(usuarioIdStr, out int usuarioId))
+            {
+                return Forbid("No se pudo identificar al usuario.");
+            }
+            var resultado = await _solicitudService.RechazarSolicitudAsync(id, usuarioId, rechazoDto.Motivo);
 
             if (!resultado.Exitoso)
             {

@@ -28,7 +28,7 @@ namespace Selectra.Controllers
         }
 
         [HttpGet("detalleAspirante/{aspiranteId}")]
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador,Aspirante")]
         public async Task<IActionResult> DetalleAspirante(int aspiranteId)
         {
             var aspirante = await _aspirantesServices.GetDetalleAspiranteAsync(aspiranteId);

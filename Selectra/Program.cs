@@ -5,6 +5,7 @@ using Scalar.AspNetCore;
 using Selectra.Models;
 using Selectra.Services;
 using Selectra.Services.Areas;
+using Selectra.Services.Aspirantes;
 using Selectra.Services.Cargos;
 using Selectra.Services.DatosPersonales;
 using Selectra.Services.NivelAcademicos;
@@ -36,6 +37,7 @@ builder.Services.AddScoped<IOfertasLaboralesServices, OfertasLaboralesServices>(
 builder.Services.AddScoped<ISolicitudVacacionesService, SolicitudVacacionesService>();
 builder.Services.AddScoped<IPostulanteService, PostulanteService>();
 builder.Services.AddScoped<ITiposDocumentosService, TiposDocumentosService>();
+builder.Services.AddScoped<IAspirantesService, AspirantesService>();
 
 //Conexion a la base de datos
 builder.Services.AddDbContext<SelectraContext>(options =>

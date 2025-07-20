@@ -398,16 +398,44 @@ namespace Selectra.Services.Usuarios
                 aspirante.fechaUltMod = ahora;
                 aspirante.usuarioUltModId = usuarioQueModificaId;
 
-                await _context.SaveChangesAsync();
-
                 if (!string.IsNullOrEmpty(aspiranteDto.pathCV))
                 {
-                    using (FileStream stream = File.Create("../../CVs/" + pathCV))
+                    try
                     {
-                        Byte[] byteArray = Convert.FromBase64String(aspiranteDto.pathCV);
-                        stream.Write(byteArray, 0, byteArray.Length);
+                        var indiceComa = aspiranteDto.pathCV.IndexOf(',');
+                        if (indiceComa == -1)
+                        {
+                            throw new FormatException("El string Base64 no contiene el prefijo 'data URI' esperado.");
+                        }
+
+                        string base64Pura = aspiranteDto.pathCV.Substring(indiceComa + 1);
+
+                        string directoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CVs");
+
+                        if (!Directory.Exists(directoryPath))
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+
+                        string filePath = Path.Combine(directoryPath, pathCV);
+
+                        Byte[] fileBytes = Convert.FromBase64String(base64Pura);
+
+                        File.WriteAllBytes(filePath, fileBytes);
+                    }
+                    catch (FormatException ex)
+                    {
+                        Console.WriteLine($"Error de formato Base64: {ex.Message}");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Captura cualquier otro error.
+                        Console.WriteLine($"Ocurrió un error general: {ex.Message}");
                     }
                 }
+                await _context.SaveChangesAsync();
+
+                
 
                 await transaction.CommitAsync();
 

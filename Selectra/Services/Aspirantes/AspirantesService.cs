@@ -39,7 +39,7 @@ namespace Selectra.Services.Aspirantes
                     fechaUltMod = i.fechaUltMod,
                     pathCV = i.pathCV,
                     pathFoto = i.pathFoto,
-                    NivelAcademico = i.NivelAcademico.nombre
+                    nivelAcademicoId = i.NivelAcademico.nivelAcademicoId
             })
                 .FirstOrDefaultAsync();
             if (aspirante == null)

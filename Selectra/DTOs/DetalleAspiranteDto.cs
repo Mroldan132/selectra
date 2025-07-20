@@ -1,4 +1,6 @@
-﻿namespace Selectra.DTOs
+﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+
+namespace Selectra.DTOs
 {
     public class DetalleAspiranteDto
     {
@@ -40,5 +42,6 @@
         public string telefono { get; set; }
 
         public string emailPersonal { get; set; }
+        public int nivelAcademicoId { get; set; }
     }
 }

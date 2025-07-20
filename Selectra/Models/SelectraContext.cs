@@ -54,12 +54,12 @@ namespace Selectra.Models
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<TipoPreguntasFiltro>()
-            .ToTable("TipoPreguntasFiltro");
+            .ToTable("TipoPreguntasFiltros");
             
             modelBuilder.Entity<TipoPreguntasFiltro>().HasData(
-        new TipoPreguntasFiltro { tipoPreguntaId = 1, nombre = "Conocimientos Generales" },
-        new TipoPreguntasFiltro { tipoPreguntaId = 2, nombre = "Aptitudes Técnicas" },
-        new TipoPreguntasFiltro { tipoPreguntaId = 3, nombre = "Habilidades Blandas" }
+                new TipoPreguntasFiltro { tipoPreguntaId = 1, nombre = "Conocimientos Generales" },
+                new TipoPreguntasFiltro { tipoPreguntaId = 2, nombre = "Aptitudes Técnicas" },
+                new TipoPreguntasFiltro { tipoPreguntaId = 3, nombre = "Habilidades Blandas" }
          );
         }
     }

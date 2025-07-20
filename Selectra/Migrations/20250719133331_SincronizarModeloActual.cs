@@ -23,34 +23,11 @@ namespace Selectra.Migrations
                     { 3, "Habilidades Blandas" }
                 });
 
-            // 🔗 Agregar nuevas claves foráneas
-            migrationBuilder.AddForeignKey(
-                name: "FK_OfertasLaborales_TipoPreguntasFiltro_tipoPreguntaFiltroId",
-                table: "OfertasLaborales",
-                column: "tipoPreguntaFiltroId",
-                principalTable: "TipoPreguntasFiltro",
-                principalColumn: "tipoPreguntaId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_PreguntasFiltros_TipoPreguntasFiltro_tipoPreguntaId",
-                table: "PreguntasFiltros",
-                column: "tipoPreguntaId",
-                principalTable: "TipoPreguntasFiltro",
-                principalColumn: "tipoPreguntaId",
-                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            // 🔻 Eliminar claves foráneas nuevas
-            migrationBuilder.DropForeignKey(
-                name: "FK_OfertasLaborales_TipoPreguntasFiltro_tipoPreguntaFiltroId",
-                table: "OfertasLaborales");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_PreguntasFiltros_TipoPreguntasFiltro_tipoPreguntaId",
-                table: "PreguntasFiltros");
 
             // 🧹 Eliminar datos semilla
             migrationBuilder.DeleteData(

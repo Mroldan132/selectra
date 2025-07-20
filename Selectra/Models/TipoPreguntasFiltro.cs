@@ -13,6 +13,6 @@ namespace Selectra.Models
         [StringLength(50)]
         public string nombre { get; set; }
 
-        public virtual ICollection<PreguntasFiltros> PreguntasFiltro { get; set; } = new HashSet<PreguntasFiltros>();
+        public virtual ICollection<PreguntasFiltros> PreguntasFiltros { get; set; } = new HashSet<PreguntasFiltros>();
     }
 }

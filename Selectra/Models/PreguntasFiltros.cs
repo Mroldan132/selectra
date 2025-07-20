@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Selectra.Models
 {
-    public class PreguntaFiltro
+    public class PreguntasFiltros
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -11,7 +11,7 @@ namespace Selectra.Models
 
         [ForeignKey("TipoPreguntasFiltros")]
         public int tipoPreguntaId { get; set; }
-        public virtual TipoPreguntasFiltros TipoPreguntasFiltros { get; set; }
+        public virtual TipoPreguntasFiltro TipoPreguntasFiltros { get; set; }
 
         [Required]
         public string textoPregunta { get; set; }

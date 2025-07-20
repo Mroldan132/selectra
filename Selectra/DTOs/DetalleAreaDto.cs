@@ -7,6 +7,9 @@
         public string descripcion { get; set; }
         public DateTime fechaCreacion { get; set; }
         public DateTime? fechaUltMod { get; set; }
+        public int? usuarioUltModId { get; set; }
+
+
 
     }
 }

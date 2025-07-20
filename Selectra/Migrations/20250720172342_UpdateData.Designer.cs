@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Selectra.Models;
 
@@ -11,9 +12,11 @@ using Selectra.Models;
 namespace Selectra.Migrations
 {
     [DbContext(typeof(SelectraContext))]
-    partial class SelectraContextModelSnapshot : ModelSnapshot
+    [Migration("20250720172342_UpdateData")]
+    partial class UpdateData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -982,7 +985,7 @@ namespace Selectra.Migrations
 
                     b.HasKey("tipoPreguntaId");
 
-                    b.ToTable("TipoPreguntasFiltros", (string)null);
+                    b.ToTable("TipoPreguntasFiltro", (string)null);
 
                     b.HasData(
                         new

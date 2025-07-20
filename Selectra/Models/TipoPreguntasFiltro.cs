@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Selectra.Models
 {
-    public class TipoPreguntasFiltros
+    public class TipoPreguntasFiltro
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,6 +13,6 @@ namespace Selectra.Models
         [StringLength(50)]
         public string nombre { get; set; }
 
-        public virtual ICollection<PreguntaFiltro> PreguntasFiltro { get; set; } = new HashSet<PreguntaFiltro>();
+        public virtual ICollection<PreguntasFiltros> PreguntasFiltros { get; set; } = new HashSet<PreguntasFiltros>();
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Selectra.Models;
 
@@ -11,9 +12,11 @@ using Selectra.Models;
 namespace Selectra.Migrations
 {
     [DbContext(typeof(SelectraContext))]
-    partial class SelectraContextModelSnapshot : ModelSnapshot
+    [Migration("20250716005339_First")]
+    partial class First
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -578,7 +581,7 @@ namespace Selectra.Migrations
 
                     b.HasIndex("usuarioUltModId");
 
-                    b.ToTable("OpcionPreguntaFiltro");
+                    b.ToTable("OpcionesPreguntasFiltros");
                 });
 
             modelBuilder.Entity("Selectra.Models.OrdenAprobacion", b =>
@@ -718,7 +721,7 @@ namespace Selectra.Migrations
                     b.ToTable("Postulantes");
                 });
 
-            modelBuilder.Entity("Selectra.Models.PreguntasFiltros", b =>
+            modelBuilder.Entity("Selectra.Models.PreguntaFiltro", b =>
                 {
                     b.Property<int>("preguntaFiltroId")
                         .ValueGeneratedOnAdd()
@@ -967,7 +970,7 @@ namespace Selectra.Migrations
                     b.ToTable("TiposDocumentos");
                 });
 
-            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltro", b =>
+            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltros", b =>
                 {
                     b.Property<int>("tipoPreguntaId")
                         .ValueGeneratedOnAdd()
@@ -982,24 +985,7 @@ namespace Selectra.Migrations
 
                     b.HasKey("tipoPreguntaId");
 
-                    b.ToTable("TipoPreguntasFiltros", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            tipoPreguntaId = 1,
-                            nombre = "Conocimientos Generales"
-                        },
-                        new
-                        {
-                            tipoPreguntaId = 2,
-                            nombre = "Aptitudes Técnicas"
-                        },
-                        new
-                        {
-                            tipoPreguntaId = 3,
-                            nombre = "Habilidades Blandas"
-                        });
+                    b.ToTable("TipoPreguntasFiltros");
                 });
 
             modelBuilder.Entity("Selectra.Models.TiposRequerimiento", b =>
@@ -1242,7 +1228,7 @@ namespace Selectra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Selectra.Models.TipoPreguntasFiltro", "TipoPreguntasFiltros")
+                    b.HasOne("Selectra.Models.TipoPreguntasFiltros", "TipoPreguntasFiltros")
                         .WithMany()
                         .HasForeignKey("tipoPreguntaFiltroId");
 
@@ -1267,7 +1253,7 @@ namespace Selectra.Migrations
 
             modelBuilder.Entity("Selectra.Models.OpcionPreguntaFiltro", b =>
                 {
-                    b.HasOne("Selectra.Models.PreguntasFiltros", "PreguntaFiltro")
+                    b.HasOne("Selectra.Models.PreguntaFiltro", "PreguntaFiltro")
                         .WithMany("OpcionesPregunta")
                         .HasForeignKey("preguntaFiltroId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1367,9 +1353,9 @@ namespace Selectra.Migrations
                     b.Navigation("UsuarioUltMod");
                 });
 
-            modelBuilder.Entity("Selectra.Models.PreguntasFiltros", b =>
+            modelBuilder.Entity("Selectra.Models.PreguntaFiltro", b =>
                 {
-                    b.HasOne("Selectra.Models.TipoPreguntasFiltro", "TipoPreguntasFiltros")
+                    b.HasOne("Selectra.Models.TipoPreguntasFiltros", "TipoPreguntasFiltros")
                         .WithMany("PreguntasFiltro")
                         .HasForeignKey("tipoPreguntaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1453,7 +1439,7 @@ namespace Selectra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Selectra.Models.PreguntasFiltros", "PreguntaFiltro")
+                    b.HasOne("Selectra.Models.PreguntaFiltro", "PreguntaFiltro")
                         .WithMany("RespuestasPostulantes")
                         .HasForeignKey("preguntaFiltroId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1555,7 +1541,7 @@ namespace Selectra.Migrations
                     b.Navigation("RespuestasPostulante");
                 });
 
-            modelBuilder.Entity("Selectra.Models.PreguntasFiltros", b =>
+            modelBuilder.Entity("Selectra.Models.PreguntaFiltro", b =>
                 {
                     b.Navigation("OpcionesPregunta");
 
@@ -1569,7 +1555,7 @@ namespace Selectra.Migrations
                     b.Navigation("OfertasLaborales");
                 });
 
-            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltro", b =>
+            modelBuilder.Entity("Selectra.Models.TipoPreguntasFiltros", b =>
                 {
                     b.Navigation("PreguntasFiltro");
                 });

@@ -57,8 +57,7 @@ namespace Selectra.Models
         [ForeignKey("UsuarioUltMod")]
         public int? usuarioUltModId { get; set; }
         public virtual Usuario UsuarioUltMod { get; set; }
-        
-        
+       
        
         public virtual ICollection<Postulante> Postulantes { get; set; } = new HashSet<Postulante>();
     }

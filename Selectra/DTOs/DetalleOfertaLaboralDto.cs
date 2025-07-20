@@ -19,6 +19,7 @@
         public DateTime? fechaPublicacion { get; set; }
         public DateTime? fechaCierre { get; set; }
         public DateTime? fechaEstimadaIngreso { get; set; }
+        public int tipoPregunta { get; set; }
 
     }
 }

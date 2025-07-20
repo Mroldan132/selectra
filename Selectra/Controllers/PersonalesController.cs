@@ -54,7 +54,25 @@ namespace Selectra.Controllers
             var organigrama = await _personalesServices.ListaPersonalOrganigrama();
             return Ok(organigrama);
         }
-        
+
+
+
+        [HttpGet("resumenPorArea")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> GetResumenPorArea()
+        {
+            var resumen = await _personalesServices.GetPersonalesPorAreaAsync();
+            return Ok(resumen);
+        }
+
+        [HttpGet("resumenPorCargo")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> GetResumenPorCargo()
+        {
+            var resumen = await _personalesServices.GetPersonalesPorCargoAsync();
+            return Ok(resumen);
+        }
+
 
     }
 }

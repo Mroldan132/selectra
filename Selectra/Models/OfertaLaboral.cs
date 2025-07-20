@@ -42,6 +42,8 @@ namespace Selectra.Models
         [StringLength(300)]
         public string referenciaUbicacion { get; set; }
 
+        public int tipoPregunta { get; set; } 
+
         [ForeignKey("EstadoOfertaLaboral")]
         public int estadoOfertaLaboralId { get; set; }
         public virtual EstadoOfertaLaboral EstadoOfertaLaboral { get; set; }
@@ -55,10 +57,7 @@ namespace Selectra.Models
         [ForeignKey("UsuarioUltMod")]
         public int? usuarioUltModId { get; set; }
         public virtual Usuario UsuarioUltMod { get; set; }
-        
-        [ForeignKey("TipoPreguntasFiltros")]
-        public int? tipoPreguntaFiltroId { get; set; }
-        public virtual TipoPreguntasFiltro TipoPreguntasFiltros { get; set; }
+       
        
         public virtual ICollection<Postulante> Postulantes { get; set; } = new HashSet<Postulante>();
     }

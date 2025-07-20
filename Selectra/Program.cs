@@ -11,15 +11,26 @@ using Selectra.Services.DatosPersonales;
 using Selectra.Services.NivelAcademicos;
 using Selectra.Services.Notificaciones;
 using Selectra.Services.OfertasLaborales;
+using Selectra.Services.OpcionPreguntaFiltro;
 using Selectra.Services.Personales;
 using Selectra.Services.Postulantes;
+using Selectra.Services.PreguntasFiltros;
 using Selectra.Services.Requerimiento;
 using Selectra.Services.TipoDocumento;
+using Selectra.Services.TipoPreguntasFiltro;
 using Selectra.Services.Usuarios;
 using Selectra.Services.Vacaciones;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenLocalhost(5000); // HTTP
+    options.ListenLocalhost(7178, listenOptions =>
+    {
+        listenOptions.UseHttps();   // HTTPS
+    });
+});
 
 
 //Implementaciones de interfaces
@@ -37,6 +48,9 @@ builder.Services.AddScoped<IOfertasLaboralesServices, OfertasLaboralesServices>(
 builder.Services.AddScoped<ISolicitudVacacionesService, SolicitudVacacionesService>();
 builder.Services.AddScoped<IPostulanteService, PostulanteService>();
 builder.Services.AddScoped<ITiposDocumentosService, TiposDocumentosService>();
+builder.Services.AddScoped<ITipoPreguntasFiltroService, TipoPreguntasFiltroService>();
+builder.Services.AddScoped<IPreguntasFiltrosService, PreguntasFiltrosService>();
+builder.Services.AddScoped<IOpcionPreguntaFiltroService, OpcionPreguntaFiltroService>();
 builder.Services.AddScoped<IAspirantesService, AspirantesService>();
 
 //Conexion a la base de datos

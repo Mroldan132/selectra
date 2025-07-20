@@ -58,7 +58,7 @@ namespace Selectra.Models
         
         [ForeignKey("TipoPreguntasFiltros")]
         public int? tipoPreguntaFiltroId { get; set; }
-        public virtual TipoPreguntasFiltros TipoPreguntasFiltros { get; set; }
+        public virtual TipoPreguntasFiltro TipoPreguntasFiltros { get; set; }
        
         public virtual ICollection<Postulante> Postulantes { get; set; } = new HashSet<Postulante>();
     }

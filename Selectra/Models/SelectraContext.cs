@@ -22,9 +22,9 @@ namespace Selectra.Models
         public DbSet<TipoDocumento> TiposDocumentos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<OrdenAprobacion> OrdenesAprobaciones { get; set; }
-        public DbSet<PreguntaFiltro> PreguntasFiltros { get; set; }
+        public DbSet<PreguntasFiltros> PreguntasFiltros { get; set; }
         public DbSet<OpcionPreguntaFiltro> OpcionesPreguntasFiltros { get; set; }
-        public DbSet<TipoPreguntasFiltros> TipoPreguntasFiltros { get; set; }
+        public DbSet<TipoPreguntasFiltro> TipoPreguntasFiltros { get; set; }
         public DbSet<TiposRequerimiento> TiposRequerimientos { get; set; }
         public DbSet<EstadoHistorialAprobacion> EstadosHistorialAprobaciones { get; set; }
         public DbSet<EstadoOfertaLaboral> EstadosOfertaLaborales { get; set; }
@@ -51,7 +51,16 @@ namespace Selectra.Models
                 .HasOne(s => s.Aprobador)                  
                 .WithMany()                                
                 .HasForeignKey(s => s.AprobadorId)         
-                .OnDelete(DeleteBehavior.Restrict);        
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<TipoPreguntasFiltro>()
+            .ToTable("TipoPreguntasFiltro");
+            
+            modelBuilder.Entity<TipoPreguntasFiltro>().HasData(
+        new TipoPreguntasFiltro { tipoPreguntaId = 1, nombre = "Conocimientos Generales" },
+        new TipoPreguntasFiltro { tipoPreguntaId = 2, nombre = "Aptitudes Técnicas" },
+        new TipoPreguntasFiltro { tipoPreguntaId = 3, nombre = "Habilidades Blandas" }
+         );
         }
     }
 }

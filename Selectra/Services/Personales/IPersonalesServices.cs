@@ -9,5 +9,12 @@ namespace Selectra.Services.Personales
         public Task<DetallePersonalDto> GetDetallePersonalAsync(int personalId);
 
         public Task<List<OrganigramaEmpresaDto>> ListaPersonalOrganigrama();
+
+
+
+
+        Task<List<ConteoDTO>> GetPersonalesPorAreaAsync();
+        Task<List<ConteoDTO>> GetPersonalesPorCargoAsync();
+
     }
 }

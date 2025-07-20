@@ -128,5 +128,7 @@ namespace Selectra.Controllers
             }
             return Ok("Oferta laboral actualizada satisfactoriamente.");
         }
+
+
     }
 }

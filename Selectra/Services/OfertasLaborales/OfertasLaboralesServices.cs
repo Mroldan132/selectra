@@ -137,6 +137,7 @@ namespace Selectra.Services.OfertasLaborales
             ofertaLaboral.responsableId = ofertaLaboralDto.responsable;
             ofertaLaboral.direccionTrabajo = ofertaLaboralDto.direccionTrabajo;
             ofertaLaboral.referenciaUbicacion = ofertaLaboralDto.referenciaUbicacion;
+            ofertaLaboral.tipoPregunta = ofertaLaboralDto.tipoPregunta;
             ofertaLaboral.fechaEstimadaIngreso = ofertaLaboralDto.fechaEstimadaIngreso;
             ofertaLaboral.fechaUltMod = DateTime.Now;
             ofertaLaboral.usuarioUltModId = usuarioQueRegistraId;

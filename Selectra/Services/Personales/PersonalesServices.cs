@@ -91,7 +91,26 @@ namespace Selectra.Services.Personales
                 jefeDirectoId = i.jefeDirectoId
             })
             .ToListAsync();
-            
+
+
+
+        public async Task<List<ConteoDTO>> GetPersonalesPorAreaAsync()
+        {
+            return await _context.Personales
+                .Include(p => p.Area)
+                .GroupBy(p => p.Area.nombreArea)
+                .Select(g => new ConteoDTO { Nombre = g.Key, Cantidad = g.Count() })
+                .ToListAsync();
+        }
+
+        public async Task<List<ConteoDTO>> GetPersonalesPorCargoAsync()
+        {
+            return await _context.Personales
+                .Include(p => p.Cargo)
+                .GroupBy(p => p.Cargo.nombreCargo)
+                .Select(g => new ConteoDTO { Nombre = g.Key, Cantidad = g.Count() })
+                .ToListAsync();
+        }
 
     }
 }
